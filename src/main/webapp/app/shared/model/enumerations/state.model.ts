@@ -1,0 +1,5 @@
+export enum state {
+  ACTIVATED = 'ACTIVATED',
+
+  DESACTIVATED = 'DESACTIVATED',
+}

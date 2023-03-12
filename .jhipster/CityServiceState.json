@@ -1,0 +1,16 @@
+{
+  "changelogDate": "20230312172453",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "state",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACTIVATED,DESACTIVATED"
+    }
+  ],
+  "name": "CityServiceState",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

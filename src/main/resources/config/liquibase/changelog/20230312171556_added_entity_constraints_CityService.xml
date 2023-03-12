@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity CityService.
+    -->
+    <changeSet id="20230312171556-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="cityservicestate_id"
+                                 baseTableName="city_service"
+                                 constraintName="fk_city_service__cityservicestate_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="city_service_state"/>
+
+        <addForeignKeyConstraint baseColumnNames="city_service_id"
+                                 baseTableName="rel_city_service__userrole"
+                                 constraintName="fk_rel_city_service__userrole__city_service_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="city_service"/>
+
+        <addForeignKeyConstraint baseColumnNames="userrole_id"
+                                 baseTableName="rel_city_service__userrole"
+                                 constraintName="fk_rel_city_service__userrole__userrole_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_role"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,31 @@
+{
+  "sousseMaVilleApp": {
+    "cityService": {
+      "home": {
+        "title": "CityServices",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau City Service",
+        "createOrEditLabel": "Créer ou éditer un City Service",
+        "search": "Recherche pour City Service",
+        "notFound": "Aucun City Service trouvé"
+      },
+      "created": "Un nouveau City Service a été créé avec l'identifiant {{ param }}",
+      "updated": "Le City Service avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le City Service avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le City Service {{ id }} ?"
+      },
+      "detail": {
+        "title": "City Service"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "tooltip": "Tooltip",
+      "icon": "Icon",
+      "order": "Order",
+      "cityservicestate": "Cityservicestate",
+      "userrole": "Userrole"
+    }
+  }
+}

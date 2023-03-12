@@ -1,0 +1,25 @@
+{
+  "sousseMaVilleApp": {
+    "cityServiceState": {
+      "home": {
+        "title": "City Service States",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new City Service State",
+        "createOrEditLabel": "Create or edit a City Service State",
+        "search": "Search for City Service State",
+        "notFound": "No City Service States found"
+      },
+      "created": "A new City Service State is created with identifier {{ param }}",
+      "updated": "A City Service State is updated with identifier {{ param }}",
+      "deleted": "A City Service State is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete City Service State {{ id }}?"
+      },
+      "detail": {
+        "title": "City Service State"
+      },
+      "id": "ID",
+      "name": "Name"
+    }
+  }
+}

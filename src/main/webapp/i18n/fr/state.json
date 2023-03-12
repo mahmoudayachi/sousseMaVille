@@ -1,0 +1,9 @@
+{
+  "sousseMaVilleApp": {
+    "state": {
+      "null": "",
+      "ACTIVATED": "ACTIVATED",
+      "DESACTIVATED": "DESACTIVATED"
+    }
+  }
+}

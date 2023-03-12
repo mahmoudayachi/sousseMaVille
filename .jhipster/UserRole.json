@@ -1,0 +1,26 @@
+{
+  "changelogDate": "20230312173240",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "Role",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ADMIN,USER,AGENT"
+    }
+  ],
+  "name": "UserRole",
+  "pagination": "pagination",
+  "readOnly": true,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "userRole",
+      "ownerSide": true,
+      "relationshipName": "userrole",
+      "relationshipType": "many-to-many",
+      "relationshipValidateRules": ["required"]
+    }
+  ],
+  "service": "no"
+}

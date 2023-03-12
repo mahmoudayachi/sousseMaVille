@@ -1,0 +1,18 @@
+{
+  "sousseMaVilleApp": {
+    "userRole": {
+      "home": {
+        "title": "UserRoles",
+        "refreshListLabel": "Actualiser la liste",
+        "search": "Recherche pour User Role",
+        "notFound": "Aucun User Role trouvé"
+      },
+      "detail": {
+        "title": "User Role"
+      },
+      "id": "ID",
+      "name": "Name",
+      "userrole": "Userrole"
+    }
+  }
+}
