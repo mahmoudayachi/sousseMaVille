@@ -31,6 +31,7 @@
       "fieldValidateRulesMin": "1"
     }
   ],
+  "jpaMetamodelFiltering": "true",
   "name": "CityService",
   "pagination": "pagination",
   "readOnly": false,
@@ -52,5 +53,5 @@
       "relationshipValidateRules": ["required"]
     }
   ],
-  "service": "no"
+  "serviceClass": "true"
 }

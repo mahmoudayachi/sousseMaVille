@@ -16,7 +16,8 @@ import org.springframework.stereotype.Repository;
  * For more information refer to https://github.com/jhipster/generator-jhipster/issues/17990.
  */
 @Repository
-public interface CityServiceRepository extends CityServiceRepositoryWithBagRelationships, JpaRepository<CityService, Long> {
+public interface CityServiceRepository
+    extends CityServiceRepositoryWithBagRelationships, JpaRepository<CityService, Long>, JpaSpecificationExecutor<CityService> {
     default Optional<CityService> findOneWithEagerRelationships(Long id) {
         return this.fetchBagRelationships(this.findOneWithToOneRelationships(id));
     }

@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 import org.jhipster.pfe.domain.CityService;
 import org.jhipster.pfe.repository.CityServiceRepository;
 import org.jhipster.pfe.repository.search.CityServiceSearchRepository;
+import org.jhipster.pfe.service.CityServiceQueryService;
+import org.jhipster.pfe.service.criteria.CityServiceCriteria;
 import org.jhipster.pfe.web.rest.errors.BadRequestAlertException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +23,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -48,10 +49,12 @@ public class CityServiceResource {
     private final CityServiceRepository cityServiceRepository;
 
     private final CityServiceSearchRepository cityServiceSearchRepository;
+    private final CityServiceQueryService cityServiceQueryService;
 
     public CityServiceResource(CityServiceRepository cityServiceRepository, CityServiceSearchRepository cityServiceSearchRepository) {
         this.cityServiceRepository = cityServiceRepository;
         this.cityServiceSearchRepository = cityServiceSearchRepository;
+        this.cityServiceQueryService = new CityServiceQueryService(cityServiceRepository, cityServiceSearchRepository);
     }
 
     /**
@@ -176,23 +179,30 @@ public class CityServiceResource {
      * {@code GET  /city-services} : get all the cityServices.
      *
      * @param pageable the pagination information.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of cityServices in body.
      */
     @GetMapping("/city-services")
     public ResponseEntity<List<CityService>> getAllCityServices(
-        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
-        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+        CityServiceCriteria criteria,
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable
     ) {
-        log.debug("REST request to get a page of CityServices");
-        Page<CityService> page;
-        if (eagerload) {
-            page = cityServiceRepository.findAllWithEagerRelationships(pageable);
-        } else {
-            page = cityServiceRepository.findAll(pageable);
-        }
+        log.debug("REST request to get CityServices by criteria: {}", criteria);
+        Page<CityService> page = cityServiceQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /city-services/count} : count all the cityServices.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/city-services/count")
+    public ResponseEntity<Long> countCityServices(CityServiceCriteria criteria) {
+        log.debug("REST request to count CityServices by criteria: {}", criteria);
+        return ResponseEntity.ok().body(cityServiceQueryService.countByCriteria(criteria));
     }
 
     /**

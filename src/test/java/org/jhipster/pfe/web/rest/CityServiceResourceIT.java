@@ -22,6 +22,7 @@ import org.jhipster.pfe.domain.CityServiceState;
 import org.jhipster.pfe.domain.UserRole;
 import org.jhipster.pfe.repository.CityServiceRepository;
 import org.jhipster.pfe.repository.search.CityServiceSearchRepository;
+import org.jhipster.pfe.service.criteria.CityServiceCriteria;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,6 +62,7 @@ class CityServiceResourceIT {
 
     private static final Integer DEFAULT_ORDER = 1;
     private static final Integer UPDATED_ORDER = 2;
+    private static final Integer SMALLER_ORDER = 1 - 1;
 
     private static final String ENTITY_API_URL = "/api/city-services";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -370,6 +372,463 @@ class CityServiceResourceIT {
             .andExpect(jsonPath("$.tooltip").value(DEFAULT_TOOLTIP))
             .andExpect(jsonPath("$.icon").value(DEFAULT_ICON))
             .andExpect(jsonPath("$.order").value(DEFAULT_ORDER));
+    }
+
+    @Test
+    @Transactional
+    void getCityServicesByIdFiltering() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        Long id = cityService.getId();
+
+        defaultCityServiceShouldBeFound("id.equals=" + id);
+        defaultCityServiceShouldNotBeFound("id.notEquals=" + id);
+
+        defaultCityServiceShouldBeFound("id.greaterThanOrEqual=" + id);
+        defaultCityServiceShouldNotBeFound("id.greaterThan=" + id);
+
+        defaultCityServiceShouldBeFound("id.lessThanOrEqual=" + id);
+        defaultCityServiceShouldNotBeFound("id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByTitleIsEqualToSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where title equals to DEFAULT_TITLE
+        defaultCityServiceShouldBeFound("title.equals=" + DEFAULT_TITLE);
+
+        // Get all the cityServiceList where title equals to UPDATED_TITLE
+        defaultCityServiceShouldNotBeFound("title.equals=" + UPDATED_TITLE);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByTitleIsInShouldWork() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where title in DEFAULT_TITLE or UPDATED_TITLE
+        defaultCityServiceShouldBeFound("title.in=" + DEFAULT_TITLE + "," + UPDATED_TITLE);
+
+        // Get all the cityServiceList where title equals to UPDATED_TITLE
+        defaultCityServiceShouldNotBeFound("title.in=" + UPDATED_TITLE);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByTitleIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where title is not null
+        defaultCityServiceShouldBeFound("title.specified=true");
+
+        // Get all the cityServiceList where title is null
+        defaultCityServiceShouldNotBeFound("title.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByTitleContainsSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where title contains DEFAULT_TITLE
+        defaultCityServiceShouldBeFound("title.contains=" + DEFAULT_TITLE);
+
+        // Get all the cityServiceList where title contains UPDATED_TITLE
+        defaultCityServiceShouldNotBeFound("title.contains=" + UPDATED_TITLE);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByTitleNotContainsSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where title does not contain DEFAULT_TITLE
+        defaultCityServiceShouldNotBeFound("title.doesNotContain=" + DEFAULT_TITLE);
+
+        // Get all the cityServiceList where title does not contain UPDATED_TITLE
+        defaultCityServiceShouldBeFound("title.doesNotContain=" + UPDATED_TITLE);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByDescriptionIsEqualToSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where description equals to DEFAULT_DESCRIPTION
+        defaultCityServiceShouldBeFound("description.equals=" + DEFAULT_DESCRIPTION);
+
+        // Get all the cityServiceList where description equals to UPDATED_DESCRIPTION
+        defaultCityServiceShouldNotBeFound("description.equals=" + UPDATED_DESCRIPTION);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByDescriptionIsInShouldWork() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where description in DEFAULT_DESCRIPTION or UPDATED_DESCRIPTION
+        defaultCityServiceShouldBeFound("description.in=" + DEFAULT_DESCRIPTION + "," + UPDATED_DESCRIPTION);
+
+        // Get all the cityServiceList where description equals to UPDATED_DESCRIPTION
+        defaultCityServiceShouldNotBeFound("description.in=" + UPDATED_DESCRIPTION);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByDescriptionIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where description is not null
+        defaultCityServiceShouldBeFound("description.specified=true");
+
+        // Get all the cityServiceList where description is null
+        defaultCityServiceShouldNotBeFound("description.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByDescriptionContainsSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where description contains DEFAULT_DESCRIPTION
+        defaultCityServiceShouldBeFound("description.contains=" + DEFAULT_DESCRIPTION);
+
+        // Get all the cityServiceList where description contains UPDATED_DESCRIPTION
+        defaultCityServiceShouldNotBeFound("description.contains=" + UPDATED_DESCRIPTION);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByDescriptionNotContainsSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where description does not contain DEFAULT_DESCRIPTION
+        defaultCityServiceShouldNotBeFound("description.doesNotContain=" + DEFAULT_DESCRIPTION);
+
+        // Get all the cityServiceList where description does not contain UPDATED_DESCRIPTION
+        defaultCityServiceShouldBeFound("description.doesNotContain=" + UPDATED_DESCRIPTION);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByTooltipIsEqualToSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where tooltip equals to DEFAULT_TOOLTIP
+        defaultCityServiceShouldBeFound("tooltip.equals=" + DEFAULT_TOOLTIP);
+
+        // Get all the cityServiceList where tooltip equals to UPDATED_TOOLTIP
+        defaultCityServiceShouldNotBeFound("tooltip.equals=" + UPDATED_TOOLTIP);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByTooltipIsInShouldWork() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where tooltip in DEFAULT_TOOLTIP or UPDATED_TOOLTIP
+        defaultCityServiceShouldBeFound("tooltip.in=" + DEFAULT_TOOLTIP + "," + UPDATED_TOOLTIP);
+
+        // Get all the cityServiceList where tooltip equals to UPDATED_TOOLTIP
+        defaultCityServiceShouldNotBeFound("tooltip.in=" + UPDATED_TOOLTIP);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByTooltipIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where tooltip is not null
+        defaultCityServiceShouldBeFound("tooltip.specified=true");
+
+        // Get all the cityServiceList where tooltip is null
+        defaultCityServiceShouldNotBeFound("tooltip.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByTooltipContainsSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where tooltip contains DEFAULT_TOOLTIP
+        defaultCityServiceShouldBeFound("tooltip.contains=" + DEFAULT_TOOLTIP);
+
+        // Get all the cityServiceList where tooltip contains UPDATED_TOOLTIP
+        defaultCityServiceShouldNotBeFound("tooltip.contains=" + UPDATED_TOOLTIP);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByTooltipNotContainsSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where tooltip does not contain DEFAULT_TOOLTIP
+        defaultCityServiceShouldNotBeFound("tooltip.doesNotContain=" + DEFAULT_TOOLTIP);
+
+        // Get all the cityServiceList where tooltip does not contain UPDATED_TOOLTIP
+        defaultCityServiceShouldBeFound("tooltip.doesNotContain=" + UPDATED_TOOLTIP);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByIconIsEqualToSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where icon equals to DEFAULT_ICON
+        defaultCityServiceShouldBeFound("icon.equals=" + DEFAULT_ICON);
+
+        // Get all the cityServiceList where icon equals to UPDATED_ICON
+        defaultCityServiceShouldNotBeFound("icon.equals=" + UPDATED_ICON);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByIconIsInShouldWork() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where icon in DEFAULT_ICON or UPDATED_ICON
+        defaultCityServiceShouldBeFound("icon.in=" + DEFAULT_ICON + "," + UPDATED_ICON);
+
+        // Get all the cityServiceList where icon equals to UPDATED_ICON
+        defaultCityServiceShouldNotBeFound("icon.in=" + UPDATED_ICON);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByIconIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where icon is not null
+        defaultCityServiceShouldBeFound("icon.specified=true");
+
+        // Get all the cityServiceList where icon is null
+        defaultCityServiceShouldNotBeFound("icon.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByIconContainsSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where icon contains DEFAULT_ICON
+        defaultCityServiceShouldBeFound("icon.contains=" + DEFAULT_ICON);
+
+        // Get all the cityServiceList where icon contains UPDATED_ICON
+        defaultCityServiceShouldNotBeFound("icon.contains=" + UPDATED_ICON);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByIconNotContainsSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where icon does not contain DEFAULT_ICON
+        defaultCityServiceShouldNotBeFound("icon.doesNotContain=" + DEFAULT_ICON);
+
+        // Get all the cityServiceList where icon does not contain UPDATED_ICON
+        defaultCityServiceShouldBeFound("icon.doesNotContain=" + UPDATED_ICON);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByOrderIsEqualToSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where order equals to DEFAULT_ORDER
+        defaultCityServiceShouldBeFound("order.equals=" + DEFAULT_ORDER);
+
+        // Get all the cityServiceList where order equals to UPDATED_ORDER
+        defaultCityServiceShouldNotBeFound("order.equals=" + UPDATED_ORDER);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByOrderIsInShouldWork() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where order in DEFAULT_ORDER or UPDATED_ORDER
+        defaultCityServiceShouldBeFound("order.in=" + DEFAULT_ORDER + "," + UPDATED_ORDER);
+
+        // Get all the cityServiceList where order equals to UPDATED_ORDER
+        defaultCityServiceShouldNotBeFound("order.in=" + UPDATED_ORDER);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByOrderIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where order is not null
+        defaultCityServiceShouldBeFound("order.specified=true");
+
+        // Get all the cityServiceList where order is null
+        defaultCityServiceShouldNotBeFound("order.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByOrderIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where order is greater than or equal to DEFAULT_ORDER
+        defaultCityServiceShouldBeFound("order.greaterThanOrEqual=" + DEFAULT_ORDER);
+
+        // Get all the cityServiceList where order is greater than or equal to UPDATED_ORDER
+        defaultCityServiceShouldNotBeFound("order.greaterThanOrEqual=" + UPDATED_ORDER);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByOrderIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where order is less than or equal to DEFAULT_ORDER
+        defaultCityServiceShouldBeFound("order.lessThanOrEqual=" + DEFAULT_ORDER);
+
+        // Get all the cityServiceList where order is less than or equal to SMALLER_ORDER
+        defaultCityServiceShouldNotBeFound("order.lessThanOrEqual=" + SMALLER_ORDER);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByOrderIsLessThanSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where order is less than DEFAULT_ORDER
+        defaultCityServiceShouldNotBeFound("order.lessThan=" + DEFAULT_ORDER);
+
+        // Get all the cityServiceList where order is less than UPDATED_ORDER
+        defaultCityServiceShouldBeFound("order.lessThan=" + UPDATED_ORDER);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByOrderIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        cityServiceRepository.saveAndFlush(cityService);
+
+        // Get all the cityServiceList where order is greater than DEFAULT_ORDER
+        defaultCityServiceShouldNotBeFound("order.greaterThan=" + DEFAULT_ORDER);
+
+        // Get all the cityServiceList where order is greater than SMALLER_ORDER
+        defaultCityServiceShouldBeFound("order.greaterThan=" + SMALLER_ORDER);
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByCityservicestateIsEqualToSomething() throws Exception {
+        CityServiceState cityservicestate;
+        if (TestUtil.findAll(em, CityServiceState.class).isEmpty()) {
+            cityServiceRepository.saveAndFlush(cityService);
+            cityservicestate = CityServiceStateResourceIT.createEntity(em);
+        } else {
+            cityservicestate = TestUtil.findAll(em, CityServiceState.class).get(0);
+        }
+        em.persist(cityservicestate);
+        em.flush();
+        cityService.setCityservicestate(cityservicestate);
+        cityServiceRepository.saveAndFlush(cityService);
+        Long cityservicestateId = cityservicestate.getId();
+
+        // Get all the cityServiceList where cityservicestate equals to cityservicestateId
+        defaultCityServiceShouldBeFound("cityservicestateId.equals=" + cityservicestateId);
+
+        // Get all the cityServiceList where cityservicestate equals to (cityservicestateId + 1)
+        defaultCityServiceShouldNotBeFound("cityservicestateId.equals=" + (cityservicestateId + 1));
+    }
+
+    @Test
+    @Transactional
+    void getAllCityServicesByUserroleIsEqualToSomething() throws Exception {
+        UserRole userrole;
+        if (TestUtil.findAll(em, UserRole.class).isEmpty()) {
+            cityServiceRepository.saveAndFlush(cityService);
+            userrole = UserRoleResourceIT.createEntity(em);
+        } else {
+            userrole = TestUtil.findAll(em, UserRole.class).get(0);
+        }
+        em.persist(userrole);
+        em.flush();
+        cityService.addUserrole(userrole);
+        cityServiceRepository.saveAndFlush(cityService);
+        Long userroleId = userrole.getId();
+
+        // Get all the cityServiceList where userrole equals to userroleId
+        defaultCityServiceShouldBeFound("userroleId.equals=" + userroleId);
+
+        // Get all the cityServiceList where userrole equals to (userroleId + 1)
+        defaultCityServiceShouldNotBeFound("userroleId.equals=" + (userroleId + 1));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultCityServiceShouldBeFound(String filter) throws Exception {
+        restCityServiceMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(cityService.getId().intValue())))
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].tooltip").value(hasItem(DEFAULT_TOOLTIP)))
+            .andExpect(jsonPath("$.[*].icon").value(hasItem(DEFAULT_ICON)))
+            .andExpect(jsonPath("$.[*].order").value(hasItem(DEFAULT_ORDER)));
+
+        // Check, that the count call also returns 1
+        restCityServiceMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultCityServiceShouldNotBeFound(String filter) throws Exception {
+        restCityServiceMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restCityServiceMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
     }
 
     @Test
