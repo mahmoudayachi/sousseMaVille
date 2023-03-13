@@ -1,4 +1,17 @@
 id;title;description;tooltip;icon;jhi_order;cityservicestate_id
-1;réclamation;envoyer une réclamation;réclamation;87963;1;1
-2;actualité;voir l'actualité ;voir l'actualité;97894;2;2
+1;réclamation;envoyer une réclamation; vous pouvez envoyer une réclamation;f071;1;1
+2;actualité;voir l'actualité ;voir l'actualité;f1ea;2;1
+3;guide;recherher des boutiques restaurants hotels ;recherher des boutiques restaurants hotels;f3c5;3;1
+4;démarche administratif;envoyer une demande de permis carte d'identité acte civil;envoyer une demande de permis carte d'identité acte civil;e178;4;1
+5;emploi;rechercher un emploi;rechercher un emploi;f002;5;1
+6;annuaire;voir les numéros utiles;voir les numéros utiles;f095;6;1
+7;payment;payer vos factures;payer vos factures;f09d;7;1
+8;agenda;voir les dates clés;voir les dates clés;f073;8;1
+9;animaux;plainte d'animal nuisible Demande de vérification du bien-être des animaux de compagnie Signaler un animal blessé;plainte d'animal nuisible Demande de vérification du bien-être des animaux de compagnie Signaler un animal blessé;f1b0;9;1
+10;santé;voir la liste des professionnels de santé phamracies pharmacies de garde;voir la liste des professionnels de santé phamracies pharmacies de garde;f21e;10;1
+11;vie politique;participer à la vie politique;participer à la vie politique;f19c;11;1
+12;famille;voir les differents établissements scoalires crèches menus des cantines;voir les differents établissements scoalires crèches menus des cantines;e301;12;1
+13;gestion des comptes;gérer les comptes;gérer les comptes;f007;13;1
+14;rapport;voir les rapports;voir les rapports;e0e5;14;1
+
 
