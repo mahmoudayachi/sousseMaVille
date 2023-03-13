@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+ <changeSet id="20230313091700-1-data" author="jhipster" >
+        <loadData
+                  file="config/liquibase/data/city_service_state.csv"
+                  separator=";"
+                  tableName="city_service_state"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+        </loadData>
+    </changeSet>
+     <changeSet id="20230312173240-1-data" author="jhipster" >
+        <loadData
+                  file="config/liquibase/data/user_role.csv"
+                  separator=";"
+                  tableName="user_role"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+    <changeSet id="20230312171556-1-data" author="jhipster" >
+        <loadData
+                  file="config/liquibase/data/city_service.csv"
+                  separator=";"
+                  tableName="city_service"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="title" type="string"/>
+            <column name="description" type="string"/>
+            <column name="tooltip" type="string"/>
+            <column name="icon" type="string"/>
+            <column name="jhi_order" type="numeric"/>
+            <column name="cityservicestate_id" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
