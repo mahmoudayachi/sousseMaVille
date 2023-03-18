@@ -31,11 +31,37 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons/faUserPlus';
 import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
 import { faUsersCog } from '@fortawesome/free-solid-svg-icons/faUsersCog';
 import { faWrench } from '@fortawesome/free-solid-svg-icons/faWrench';
-
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons/faTriangleExclamation';
+import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
+import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons/faMapLocationDot';
+import { faPaste } from '@fortawesome/free-solid-svg-icons/faPaste';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons/faMagnifyingGlass';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons/faCreditCard';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons/faCalendar';
+import { faPaw } from '@fortawesome/free-solid-svg-icons/faPaw';
+import { faHeartPulse } from '@fortawesome/free-solid-svg-icons/faHeartPulse';
+import { faBuildingColumns } from '@fortawesome/free-solid-svg-icons/faBuildingColumns';
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons/faUserGroup';
+import { faChartLine } from '@fortawesome/free-solid-svg-icons/faChartLine';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 export const loadIcons = () => {
   library.add(
+    faChartLine,
+    faUserGroup,
+    faUsers,
+    faBuildingColumns,
+    faHeartPulse,
+    faPaw,
+    faCalendar,
+    faCreditCard,
+    faPhone,
+    faMagnifyingGlass,
+    faPaste,
+    faMapLocationDot,
+    faNewspaper,
+    faTriangleExclamation,
     faArrowLeft,
     faAsterisk,
     faBan,

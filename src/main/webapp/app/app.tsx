@@ -3,7 +3,7 @@ import './app.scss';
 import 'app/config/dayjs.ts';
 
 import React, { useEffect } from 'react';
-import { Card } from 'reactstrap';
+
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -17,7 +17,8 @@ import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import ErrorBoundary from 'app/shared/error/error-boundary';
 import { AUTHORITIES } from 'app/config/constants';
 import AppRoutes from 'app/routes';
-
+import Cartecontainer from './modules/components/CityServiceCarteContainer';
+import Carte from './modules/components/CityServiceCarte';
 const baseHref = document.querySelector('base').getAttribute('href').replace(/\/$/, '');
 
 export const App = () => {
@@ -50,14 +51,11 @@ export const App = () => {
             isOpenAPIEnabled={isOpenAPIEnabled}
           />
         </ErrorBoundary>
-        <div className="container-fluid view-container" id="app-view-container">
-          <Card className="jh-card">
-            <ErrorBoundary>
-              <AppRoutes />
-            </ErrorBoundary>
-          </Card>
-          <Footer />
-        </div>
+
+        <ErrorBoundary>
+          <AppRoutes />
+        </ErrorBoundary>
+        <Footer />
       </div>
     </BrowserRouter>
   );

@@ -14,7 +14,8 @@ import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 import PageNotFound from 'app/shared/error/page-not-found';
 import { AUTHORITIES } from 'app/config/constants';
-
+import CityServiceCartecontainer from './modules/components/CityServiceCarteContainer';
+import Carte from './modules/components/CityServiceCarte';
 const loading = <div>loading ...</div>;
 
 const Account = Loadable({
@@ -31,7 +32,8 @@ const AppRoutes = () => {
   return (
     <div className="view-routes">
       <ErrorBoundaryRoutes>
-        <Route index element={<Home />} />
+        <Route index element={<CityServiceCartecontainer />} />
+        <Route index element={<Carte />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="account">
