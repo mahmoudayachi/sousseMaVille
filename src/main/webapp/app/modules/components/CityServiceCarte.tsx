@@ -12,6 +12,7 @@ const CityServiceCarte = ({ servicedata }: any) => {
         <FontAwesomeIcon icon={servicedata.icon} className="icon" />
       </div>
       <div className="title">{servicedata.title} </div>
+      <div className="description">{servicedata.description}</div>
     </div>
   );
 };

@@ -7,10 +7,10 @@ id;title;description;tooltip;icon;jhi_order;cityservicestate_id
 6;annuaire;voir les numéros utiles;voir les numéros utiles;phone;6;1
 7;payment;payer vos factures;payer vos factures;credit-card;7;1
 8;agenda;voir les dates clés;voir les dates clés;calendar;8;1
-9;animaux;plainte d'animal nuisible Demande de vérification du bien-être des animaux de compagnie Signaler un animal blessé;plainte d'animal nuisible Demande de vérification du bien-être des animaux de compagnie Signaler un animal blessé;paw;9;1
+9;animaux;plainte d'animal nuisible Demande de vérification du bien-être des animaux de compagnie;plainte d'animal nuisible Demande de vérification du bien-être des animaux de compagnie;paw;9;1
 10;santé;voir la liste des professionnels de santé phamracies pharmacies de garde;voir la liste des professionnels de santé phamracies pharmacies de garde;heart-pulse;10;1
 11;vie politique;participer à la vie politique;participer à la vie politique;building-columns;11;1
-12;famille;voir les differents établissements scoalires crèches menus des cantines;voir les differents établissements scoalires crèches menus des cantines;users;12;1
+12;famille;voir les differents établissements scolaires crèches menus des cantines;voir les differents établissements scoalires crèches menus des cantines;users;12;1
 13;gestion des comptes;gérer les comptes;gérer les comptes;user-group;13;1
 14;rapport;voir les rapports;voir les rapports;chart-line;14;1
 
