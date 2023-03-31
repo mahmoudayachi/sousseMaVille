@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
 import Button from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const CityServiceCarte = ({ servicedata }: any) => {
   return (
@@ -13,6 +14,7 @@ const CityServiceCarte = ({ servicedata }: any) => {
       </div>
       <div className="title">{servicedata.title} </div>
       <div className="description">{servicedata.description}</div>
+      {servicedata.title == 'réclamation' && <Link to="/réclamationboard">lien</Link>}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import './CityServiceCarteContainer.scss';
 import { identity } from 'lodash';
 import CityServiceCarte from './CityServiceCarte';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Réclamationboard from './Réclamationboard';
 
 export const CityServiceCartecontainer = () => {
   const [services, setServices] = useState([]);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Routes, Route, Router } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 import Login from 'app/modules/login/login';
@@ -16,6 +16,8 @@ import PageNotFound from 'app/shared/error/page-not-found';
 import { AUTHORITIES } from 'app/config/constants';
 import CityServiceCartecontainer from './modules/components/CityServiceCarteContainer';
 import Carte from './modules/components/CityServiceCarte';
+import Réclamationboard from './modules/components/Réclamationboard';
+
 const loading = <div>loading ...</div>;
 
 const Account = Loadable({
@@ -33,7 +35,7 @@ const AppRoutes = () => {
     <div className="view-routes">
       <ErrorBoundaryRoutes>
         <Route index element={<CityServiceCartecontainer />} />
-        <Route index element={<Carte />} />
+        <Route path="/réclamationboard" element={<Réclamationboard />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="account">
