@@ -1,10 +1,10 @@
 import React from 'react';
-import './Réclamationboard.scss';
+import './Reclamationboard.scss';
 import { Nav, NavItem, NavLink, TabPane, Row, Container, TabContent } from 'reactstrap';
-import CityServiceCarte from './CityServiceCarte';
+import ReclamationCategoryCard from './ReclamationCategoryCard';
 import { useState } from 'react';
 
-const Réclamationboard = () => {
+const Reclamationboard = () => {
   const [active, Setactive] = useState(false);
   const [inactive, Setinaactive] = useState(true);
   const change = () => {
@@ -21,7 +21,7 @@ const Réclamationboard = () => {
       <div className="tab-container">
         <Nav className="nav" fill pills>
           <NavItem className="item">
-            <NavLink className="link" active={active} onClick={change} href="#">
+            <NavLink className="link" active={active} onClick={change} href="/reclamationform">
               envoyer une réclamation
             </NavLink>
           </NavItem>
@@ -32,13 +32,12 @@ const Réclamationboard = () => {
           </NavItem>
         </Nav>
       </div>
+
       <div className="réclamation-cards-container">
-        <div className="réclamation-cards">
-          <div>hello</div>
-        </div>
+        <ReclamationCategoryCard />
       </div>
     </>
   );
 };
 
-export default Réclamationboard;
+export default Reclamationboard;

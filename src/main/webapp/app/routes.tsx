@@ -16,7 +16,8 @@ import PageNotFound from 'app/shared/error/page-not-found';
 import { AUTHORITIES } from 'app/config/constants';
 import CityServiceCartecontainer from './modules/components/CityServiceCarteContainer';
 import Carte from './modules/components/CityServiceCarte';
-import Réclamationboard from './modules/components/Réclamationboard';
+import Reclamationboard from './modules/components/Reclamationboard';
+import Reclamationform from './modules/components/Reclamationform';
 
 const loading = <div>loading ...</div>;
 
@@ -34,8 +35,9 @@ const AppRoutes = () => {
   return (
     <div className="view-routes">
       <ErrorBoundaryRoutes>
-        <Route index element={<CityServiceCartecontainer />} />
-        <Route path="/réclamationboard" element={<Réclamationboard />} />
+        <Route path="/" element={<CityServiceCartecontainer />} />
+        <Route path="/reclamationboard" element={<Reclamationboard />} />
+        <Route path="/reclamationform" element={<Reclamationform />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="account">
