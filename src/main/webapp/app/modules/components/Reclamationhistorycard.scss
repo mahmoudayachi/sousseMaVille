@@ -1,0 +1,43 @@
+.history-carte {
+  width: 80%;
+  height: 200px;
+  background-color: rgba(217, 217, 217, 40%);
+  margin: 20px auto;
+}
+.nom-reclamation {
+  font-size: 2em;
+  font-weight: 900;
+}
+.adresse {
+  margin-top: 10px;
+  font-size: 1em;
+  font-weight: 200;
+}
+.image {
+  margin: auto;
+  text-align: center;
+}
+.state {
+  background-color: rgba(0, 37, 92, 70%);
+  color: white;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+@media (max-width: 480px) {
+  .nom-reclamation {
+    font-size: 1em;
+  }
+  .adresse {
+    font-size: 0.7em;
+  }
+  .state {
+    width: 5em;
+    height: 1.5em;
+    text-align: center;
+    margin-top: 5em;
+  }
+}

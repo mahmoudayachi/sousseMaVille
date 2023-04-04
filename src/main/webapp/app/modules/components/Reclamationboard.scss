@@ -9,14 +9,30 @@
 }
 
 .tab-container {
-  text-align: center;
-  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
 }
 .nav {
-  width: 600px;
+  width: 400px;
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
   margin: auto;
 }
 .item:active {
-  background-color: rgba(0, 37, 92, 100%);
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: rgba(0, 46, 136, 78%);
+  color: white;
+  border: 3px solid rgba(0, 46, 136, 78%);
+}
+@media (max-width: 480px) {
+  .tab-container {
+    margin: auto;
+  }
+  .item {
+    font-size: 14px;
+  }
 }

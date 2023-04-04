@@ -18,6 +18,7 @@ import CityServiceCartecontainer from './modules/components/CityServiceCarteCont
 import Carte from './modules/components/CityServiceCarte';
 import Reclamationboard from './modules/components/Reclamationboard';
 import Reclamationform from './modules/components/Reclamationform';
+import ImageUpload from './modules/components/Imageuploader';
 
 const loading = <div>loading ...</div>;
 
@@ -38,6 +39,7 @@ const AppRoutes = () => {
         <Route path="/" element={<CityServiceCartecontainer />} />
         <Route path="/reclamationboard" element={<Reclamationboard />} />
         <Route path="/reclamationform" element={<Reclamationform />} />
+        <Route path="/imageupload" element={<ImageUpload />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="account">

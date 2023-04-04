@@ -14,7 +14,14 @@
 }
 .labels {
   display: block;
-  margin-top: 40px;
+  margin-top: 20px;
+  margin-right: 230px;
+}
+.files {
+  margin-right: 170px;
+}
+.email {
+  margin-right: 250px;
 }
 
 .input {
@@ -32,7 +39,9 @@
   height: 100px;
 }
 .checkbox {
-  margin-left: 400px;
+  margin-right: 9px;
+}
+.check {
 }
 .button {
   background-color: rgba(0, 46, 136, 78%);

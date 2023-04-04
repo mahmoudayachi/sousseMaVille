@@ -3,6 +3,9 @@ import './Reclamationboard.scss';
 import { Nav, NavItem, NavLink, TabPane, Row, Container, TabContent } from 'reactstrap';
 import ReclamationCategoryCard from './ReclamationCategoryCard';
 import { useState } from 'react';
+import Reclamationform from './Reclamationform';
+import ImageUpload from './Imageuploader';
+import Reclamationhistorycontainer from './Reclamationhistorycontainer';
 
 const Reclamationboard = () => {
   const [active, Setactive] = useState(false);
@@ -21,7 +24,7 @@ const Reclamationboard = () => {
       <div className="tab-container">
         <Nav className="nav" fill pills>
           <NavItem className="item">
-            <NavLink className="link" active={active} onClick={change} href="/reclamationform">
+            <NavLink className="link" active={active} onClick={change} href="#">
               envoyer une réclamation
             </NavLink>
           </NavItem>
@@ -32,10 +35,8 @@ const Reclamationboard = () => {
           </NavItem>
         </Nav>
       </div>
-
-      <div className="réclamation-cards-container">
-        <ReclamationCategoryCard />
-      </div>
+      {active == true && <Reclamationform />}
+      {inactive == true && <Reclamationhistorycontainer />}
     </>
   );
 };
