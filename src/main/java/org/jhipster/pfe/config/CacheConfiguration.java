@@ -53,6 +53,7 @@ public class CacheConfiguration {
             createCache(cm, org.jhipster.pfe.domain.UserRole.class.getName());
             createCache(cm, org.jhipster.pfe.domain.CityService.class.getName() + ".userroles");
             createCache(cm, org.jhipster.pfe.domain.UserRole.class.getName() + ".userroles");
+            createCache(cm, org.jhipster.pfe.domain.ComplaintCategory.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

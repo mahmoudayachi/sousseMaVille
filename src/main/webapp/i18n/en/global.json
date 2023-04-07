@@ -10,6 +10,7 @@
         "cityService": "City Service",
         "cityServiceState": "City Service State",
         "userRole": "User Role",
+        "complaintCategory": "Complaint Category",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

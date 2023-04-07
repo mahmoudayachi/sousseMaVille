@@ -1,0 +1,18 @@
+{
+  "sousseMaVilleApp": {
+    "complaintCategory": {
+      "home": {
+        "title": "Complaint Categories",
+        "refreshListLabel": "Refresh list",
+        "search": "Search for Complaint Category",
+        "notFound": "No Complaint Categories found"
+      },
+      "detail": {
+        "title": "Complaint Category"
+      },
+      "id": "ID",
+      "name": "Name",
+      "icon": "Icon"
+    }
+  }
+}

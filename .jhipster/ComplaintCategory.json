@@ -1,0 +1,18 @@
+{
+  "changelogDate": "20230407100403",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "icon",
+      "fieldType": "String"
+    }
+  ],
+  "name": "ComplaintCategory",
+  "pagination": "pagination",
+  "readOnly": true,
+  "relationships": [],
+  "service": "no"
+}
