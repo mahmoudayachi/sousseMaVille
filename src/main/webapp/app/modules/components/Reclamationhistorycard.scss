@@ -4,23 +4,25 @@
   background-color: rgba(217, 217, 217, 40%);
   margin: 20px auto;
 }
-.nom-reclamation {
-  font-size: 2em;
-  font-weight: 900;
+.reclamation-description {
+  font-size: 1.6em;
+  font-weight: 500;
+  margin-left: 20px;
 }
 .adresse {
   margin-top: 10px;
   font-size: 1em;
   font-weight: 200;
+  margin-left: 20px;
 }
 .image {
-  margin: auto;
   text-align: center;
+  right: 0;
 }
 .state {
   background-color: rgba(0, 37, 92, 70%);
   color: white;
-  width: 100px;
+  width: 60px;
   height: 30px;
   text-align: center;
   margin-top: 40px;
@@ -28,7 +30,7 @@
 }
 
 @media (max-width: 480px) {
-  .nom-reclamation {
+  .reclamation-description {
     font-size: 1em;
   }
   .adresse {

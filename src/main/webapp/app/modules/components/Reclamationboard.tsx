@@ -25,12 +25,12 @@ const Reclamationboard = () => {
         <Nav className="nav" fill pills>
           <NavItem className="item">
             <NavLink className="link" active={active} onClick={change} href="#">
-              envoyer une réclamation
+              signaler un probléme
             </NavLink>
           </NavItem>
           <NavItem className="item">
             <NavLink className="link" active={inactive} onClick={change} href="#">
-              voir réclamation
+              historique
             </NavLink>
           </NavItem>
         </Nav>

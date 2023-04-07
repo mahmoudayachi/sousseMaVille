@@ -14,7 +14,7 @@ const CityServiceCarte = ({ servicedata }: any) => {
       </div>
       <div className="title">{servicedata.title} </div>
       <div className="description">{servicedata.description}</div>
-      {servicedata.title == 'réclamation' && <Link to="reclamationboard">lien</Link>}
+      {servicedata.title == 'réclamation' && <Link to="reclamationboard">{servicedata.title}</Link>}
     </div>
   );
 };

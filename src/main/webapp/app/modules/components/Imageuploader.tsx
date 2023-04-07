@@ -27,31 +27,9 @@ const ImageUpload = () => {
     <section>
       <label className="uploadfile">
         Ajouter une photo
-        <input type="file" name="images" onChange={onSelectFile} multiple accept="image/png , image/jpeg, image/webp" />
+        <input type="file" name="images" onChange={onSelectFile} multiple accept="image/png , image/jpeg, image/webp" className="upload" />
       </label>
       <br />
-
-      <input type="file" multiple />
-
-      {selectedImages.length > 0 &&
-        (selectedImages.length > 10 ? (
-          <p className="error">
-            You can't upload more than 10 images! <br />
-            <span>
-              please delete <b> {selectedImages.length - 10} </b> of them{' '}
-            </span>
-          </p>
-        ) : (
-          <button
-            className="upload-btn"
-            onClick={() => {
-              console.log(selectedImages);
-            }}
-          >
-            UPLOAD {selectedImages.length} IMAGE
-            {selectedImages.length === 1 ? '' : 'S'}
-          </button>
-        ))}
 
       <div className="images">
         {selectedImages &&
@@ -59,7 +37,7 @@ const ImageUpload = () => {
             return (
               <div key={image} className="image">
                 <img src={image} height="200" alt="upload" />
-                <button onClick={() => deleteHandler(image)}>delete image</button>
+                <button onClick={() => deleteHandler(image)}>x</button>
               </div>
             );
           })}
