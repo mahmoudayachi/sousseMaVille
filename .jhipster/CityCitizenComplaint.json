@@ -1,0 +1,68 @@
+{
+  "changelogDate": "20230407130151",
+  "fields": [
+    {
+      "fieldName": "address",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sharewithpublic",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "complaintstate",
+      "fieldType": "Complaintstate",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "RECEIVED,OPENED,INPROGRESS,CLOSED,REFUSED"
+    },
+    {
+      "fieldName": "firstname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phonenumber",
+      "fieldType": "String"
+    }
+  ],
+  "name": "CityCitizenComplaint",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "complaintCategory",
+      "relationshipName": "complaintCategory",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "cityCitizenComplaint",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    }
+  ],
+  "service": "no"
+}

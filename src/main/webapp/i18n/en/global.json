@@ -11,6 +11,7 @@
         "cityServiceState": "City Service State",
         "userRole": "User Role",
         "complaintCategory": "Complaint Category",
+        "cityCitizenComplaint": "City Citizen Complaint",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

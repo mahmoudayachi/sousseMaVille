@@ -1,0 +1,35 @@
+{
+  "sousseMaVilleApp": {
+    "cityCitizenComplaint": {
+      "home": {
+        "title": "City Citizen Complaints",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new City Citizen Complaint",
+        "createOrEditLabel": "Create or edit a City Citizen Complaint",
+        "search": "Search for City Citizen Complaint",
+        "notFound": "No City Citizen Complaints found"
+      },
+      "created": "A new City Citizen Complaint is created with identifier {{ param }}",
+      "updated": "A City Citizen Complaint is updated with identifier {{ param }}",
+      "deleted": "A City Citizen Complaint is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete City Citizen Complaint {{ id }}?"
+      },
+      "detail": {
+        "title": "City Citizen Complaint"
+      },
+      "id": "ID",
+      "address": "Address",
+      "description": "Description",
+      "date": "Date",
+      "sharewithpublic": "Sharewithpublic",
+      "complaintstate": "Complaintstate",
+      "firstname": "Firstname",
+      "lastname": "Lastname",
+      "email": "Email",
+      "phonenumber": "Phonenumber",
+      "complaintCategory": "Complaint Category",
+      "user": "User"
+    }
+  }
+}
