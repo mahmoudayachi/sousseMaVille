@@ -22,6 +22,7 @@
     <include file="config/liquibase/changelog/20230312171556_added_entity_CityService.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230407100403_added_entity_ComplaintCategory.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230407130151_added_entity_CityCitizenComplaint.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230407133343_added_entity_CityCitizenPhoto.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20230312171556_added_entity_constraints_CityService.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230312173240_added_entity_constraints_UserRole.xml" relativeToChangelogFile="false"/>

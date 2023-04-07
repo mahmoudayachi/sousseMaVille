@@ -3,6 +3,7 @@ import cityServiceState from 'app/entities/city-service-state/city-service-state
 import userRole from 'app/entities/user-role/user-role.reducer';
 import complaintCategory from 'app/entities/complaint-category/complaint-category.reducer';
 import cityCitizenComplaint from 'app/entities/city-citizen-complaint/city-citizen-complaint.reducer';
+import cityCitizenPhoto from 'app/entities/city-citizen-photo/city-citizen-photo.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const entitiesReducers = {
@@ -11,6 +12,7 @@ const entitiesReducers = {
   userRole,
   complaintCategory,
   cityCitizenComplaint,
+  cityCitizenPhoto,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
 };
 

@@ -1,0 +1,25 @@
+{
+  "sousseMaVilleApp": {
+    "cityCitizenPhoto": {
+      "home": {
+        "title": "CityCitizenPhotos",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau City Citizen Photo",
+        "createOrEditLabel": "Créer ou éditer un City Citizen Photo",
+        "search": "Recherche pour City Citizen Photo",
+        "notFound": "Aucun City Citizen Photo trouvé"
+      },
+      "created": "Un nouveau City Citizen Photo a été créé avec l'identifiant {{ param }}",
+      "updated": "Le City Citizen Photo avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le City Citizen Photo avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le City Citizen Photo {{ id }} ?"
+      },
+      "detail": {
+        "title": "City Citizen Photo"
+      },
+      "id": "ID",
+      "image": "Image"
+    }
+  }
+}

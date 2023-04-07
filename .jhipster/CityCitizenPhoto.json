@@ -1,0 +1,15 @@
+{
+  "changelogDate": "20230407133343",
+  "fields": [
+    {
+      "fieldName": "image",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "name": "CityCitizenPhoto",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

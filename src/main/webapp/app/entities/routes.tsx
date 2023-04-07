@@ -8,6 +8,7 @@ import CityServiceState from './city-service-state';
 import UserRole from './user-role';
 import ComplaintCategory from './complaint-category';
 import CityCitizenComplaint from './city-citizen-complaint';
+import CityCitizenPhoto from './city-citizen-photo';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -20,6 +21,7 @@ export default () => {
         <Route path="user-role/*" element={<UserRole />} />
         <Route path="complaint-category/*" element={<ComplaintCategory />} />
         <Route path="city-citizen-complaint/*" element={<CityCitizenComplaint />} />
+        <Route path="city-citizen-photo/*" element={<CityCitizenPhoto />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

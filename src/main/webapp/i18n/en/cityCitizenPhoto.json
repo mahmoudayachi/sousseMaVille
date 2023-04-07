@@ -1,0 +1,25 @@
+{
+  "sousseMaVilleApp": {
+    "cityCitizenPhoto": {
+      "home": {
+        "title": "City Citizen Photos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new City Citizen Photo",
+        "createOrEditLabel": "Create or edit a City Citizen Photo",
+        "search": "Search for City Citizen Photo",
+        "notFound": "No City Citizen Photos found"
+      },
+      "created": "A new City Citizen Photo is created with identifier {{ param }}",
+      "updated": "A City Citizen Photo is updated with identifier {{ param }}",
+      "deleted": "A City Citizen Photo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete City Citizen Photo {{ id }}?"
+      },
+      "detail": {
+        "title": "City Citizen Photo"
+      },
+      "id": "ID",
+      "image": "Image"
+    }
+  }
+}

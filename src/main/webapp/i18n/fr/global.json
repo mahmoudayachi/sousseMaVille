@@ -12,6 +12,7 @@
         "userRole": "User Role",
         "complaintCategory": "Complaint Category",
         "cityCitizenComplaint": "City Citizen Complaint",
+        "cityCitizenPhoto": "City Citizen Photo",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
