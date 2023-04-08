@@ -18,6 +18,7 @@ export default class CityCitizenComplaintUpdatePage {
   phonenumberInput: ElementFinder = element(by.css('input#city-citizen-complaint-phonenumber'));
   complaintCategorySelect: ElementFinder = element(by.css('select#city-citizen-complaint-complaintCategory'));
   userSelect: ElementFinder = element(by.css('select#city-citizen-complaint-user'));
+  cityCitizenPhotoSelect: ElementFinder = element(by.css('select#city-citizen-complaint-cityCitizenPhoto'));
 
   getPageTitle() {
     return this.pageTitle;
@@ -125,6 +126,22 @@ export default class CityCitizenComplaintUpdatePage {
     return this.userSelect.element(by.css('option:checked')).getText();
   }
 
+  async cityCitizenPhotoSelectLastOption() {
+    await this.cityCitizenPhotoSelect.all(by.tagName('option')).last().click();
+  }
+
+  async cityCitizenPhotoSelectOption(option) {
+    await this.cityCitizenPhotoSelect.sendKeys(option);
+  }
+
+  getCityCitizenPhotoSelect() {
+    return this.cityCitizenPhotoSelect;
+  }
+
+  async getCityCitizenPhotoSelectedOption() {
+    return this.cityCitizenPhotoSelect.element(by.css('option:checked')).getText();
+  }
+
   async save() {
     await this.saveButton.click();
   }
@@ -163,6 +180,7 @@ export default class CityCitizenComplaintUpdatePage {
     await this.setPhonenumberInput('phonenumber');
     await this.complaintCategorySelectLastOption();
     await this.userSelectLastOption();
+    // this.cityCitizenPhotoSelectLastOption();
     await this.save();
     await waitUntilHidden(this.saveButton);
   }

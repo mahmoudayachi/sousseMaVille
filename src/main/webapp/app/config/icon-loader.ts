@@ -45,9 +45,17 @@ import { faBuildingColumns } from '@fortawesome/free-solid-svg-icons/faBuildingC
 import { faUserGroup } from '@fortawesome/free-solid-svg-icons/faUserGroup';
 import { faChartLine } from '@fortawesome/free-solid-svg-icons/faChartLine';
 import { library } from '@fortawesome/fontawesome-svg-core';
-
+import { faCar } from '@fortawesome/free-solid-svg-icons/facar';
+import { faLightbulb } from '@fortawesome/free-solid-svg-icons/faLightbulb';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons/faBuilding';
+import { faExclamation } from '@fortawesome/free-solid-svg-icons/faExclamation';
 export const loadIcons = () => {
   library.add(
+    faExclamation,
+    faBuilding,
+    faTrash,
+    faLightbulb,
+    faCar,
     faChartLine,
     faUserGroup,
     faUsers,

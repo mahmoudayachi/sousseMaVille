@@ -2,6 +2,8 @@ package org.jhipster.pfe.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -65,6 +67,16 @@ public class CityCitizenComplaint implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     private User user;
+
+    @ManyToMany
+    @NotNull
+    @JoinTable(
+        name = "rel_city_citizen_complaint__city_citizen_photo",
+        joinColumns = @JoinColumn(name = "city_citizen_complaint_id"),
+        inverseJoinColumns = @JoinColumn(name = "city_citizen_photo_id")
+    )
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<CityCitizenPhoto> cityCitizenPhotos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -221,6 +233,29 @@ public class CityCitizenComplaint implements Serializable {
 
     public CityCitizenComplaint user(User user) {
         this.setUser(user);
+        return this;
+    }
+
+    public Set<CityCitizenPhoto> getCityCitizenPhotos() {
+        return this.cityCitizenPhotos;
+    }
+
+    public void setCityCitizenPhotos(Set<CityCitizenPhoto> cityCitizenPhotos) {
+        this.cityCitizenPhotos = cityCitizenPhotos;
+    }
+
+    public CityCitizenComplaint cityCitizenPhotos(Set<CityCitizenPhoto> cityCitizenPhotos) {
+        this.setCityCitizenPhotos(cityCitizenPhotos);
+        return this;
+    }
+
+    public CityCitizenComplaint addCityCitizenPhoto(CityCitizenPhoto cityCitizenPhoto) {
+        this.cityCitizenPhotos.add(cityCitizenPhoto);
+        return this;
+    }
+
+    public CityCitizenComplaint removeCityCitizenPhoto(CityCitizenPhoto cityCitizenPhoto) {
+        this.cityCitizenPhotos.remove(cityCitizenPhoto);
         return this;
     }
 

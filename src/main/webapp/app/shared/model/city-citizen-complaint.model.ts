@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { IComplaintCategory } from 'app/shared/model/complaint-category.model';
 import { IUser } from 'app/shared/model/user.model';
+import { ICityCitizenPhoto } from 'app/shared/model/city-citizen-photo.model';
 import { Complaintstate } from 'app/shared/model/enumerations/complaintstate.model';
 
 export interface ICityCitizenComplaint {
@@ -16,6 +17,7 @@ export interface ICityCitizenComplaint {
   phonenumber?: string | null;
   complaintCategory?: IComplaintCategory;
   user?: IUser;
+  cityCitizenPhotos?: ICityCitizenPhoto[];
 }
 
 export const defaultValue: Readonly<ICityCitizenComplaint> = {

@@ -41,6 +41,16 @@
     {
       "fieldName": "phonenumber",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "googlemapsx",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "googlemapy",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     }
   ],
   "name": "CityCitizenComplaint",
@@ -61,6 +71,15 @@
       "ownerSide": true,
       "relationshipName": "user",
       "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "cityCitizenPhoto",
+      "otherEntityRelationshipName": "cityCitizenComplaint",
+      "ownerSide": true,
+      "relationshipName": "cityCitizenPhoto",
+      "relationshipType": "many-to-many",
       "relationshipValidateRules": ["required"]
     }
   ],

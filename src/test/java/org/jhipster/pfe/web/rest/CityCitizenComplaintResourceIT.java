@@ -20,6 +20,7 @@ import org.apache.commons.collections4.IterableUtils;
 import org.assertj.core.util.IterableUtil;
 import org.jhipster.pfe.IntegrationTest;
 import org.jhipster.pfe.domain.CityCitizenComplaint;
+import org.jhipster.pfe.domain.CityCitizenPhoto;
 import org.jhipster.pfe.domain.ComplaintCategory;
 import org.jhipster.pfe.domain.User;
 import org.jhipster.pfe.domain.enumeration.Complaintstate;
@@ -133,6 +134,16 @@ class CityCitizenComplaintResourceIT {
         em.persist(user);
         em.flush();
         cityCitizenComplaint.setUser(user);
+        // Add required entity
+        CityCitizenPhoto cityCitizenPhoto;
+        if (TestUtil.findAll(em, CityCitizenPhoto.class).isEmpty()) {
+            cityCitizenPhoto = CityCitizenPhotoResourceIT.createEntity(em);
+            em.persist(cityCitizenPhoto);
+            em.flush();
+        } else {
+            cityCitizenPhoto = TestUtil.findAll(em, CityCitizenPhoto.class).get(0);
+        }
+        cityCitizenComplaint.getCityCitizenPhotos().add(cityCitizenPhoto);
         return cityCitizenComplaint;
     }
 
@@ -168,6 +179,16 @@ class CityCitizenComplaintResourceIT {
         em.persist(user);
         em.flush();
         cityCitizenComplaint.setUser(user);
+        // Add required entity
+        CityCitizenPhoto cityCitizenPhoto;
+        if (TestUtil.findAll(em, CityCitizenPhoto.class).isEmpty()) {
+            cityCitizenPhoto = CityCitizenPhotoResourceIT.createUpdatedEntity(em);
+            em.persist(cityCitizenPhoto);
+            em.flush();
+        } else {
+            cityCitizenPhoto = TestUtil.findAll(em, CityCitizenPhoto.class).get(0);
+        }
+        cityCitizenComplaint.getCityCitizenPhotos().add(cityCitizenPhoto);
         return cityCitizenComplaint;
     }
 

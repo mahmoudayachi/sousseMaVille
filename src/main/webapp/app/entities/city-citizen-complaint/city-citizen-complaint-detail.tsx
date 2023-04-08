@@ -98,6 +98,21 @@ export const CityCitizenComplaintDetail = () => {
             <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.user">User</Translate>
           </dt>
           <dd>{cityCitizenComplaintEntity.user ? cityCitizenComplaintEntity.user.login : ''}</dd>
+          <dt>
+            <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.cityCitizenPhoto">City Citizen Photo</Translate>
+          </dt>
+          <dd>
+            {cityCitizenComplaintEntity.cityCitizenPhotos
+              ? cityCitizenComplaintEntity.cityCitizenPhotos.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.id}</a>
+                    {cityCitizenComplaintEntity.cityCitizenPhotos && i === cityCitizenComplaintEntity.cityCitizenPhotos.length - 1
+                      ? ''
+                      : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/city-citizen-complaint" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -11,24 +11,28 @@ import org.springframework.stereotype.Repository;
 
 /**
  * Spring Data JPA repository for the CityCitizenComplaint entity.
+ *
+ * When extending this class, extend CityCitizenComplaintRepositoryWithBagRelationships too.
+ * For more information refer to https://github.com/jhipster/generator-jhipster/issues/17990.
  */
 @Repository
-public interface CityCitizenComplaintRepository extends JpaRepository<CityCitizenComplaint, Long> {
+public interface CityCitizenComplaintRepository
+    extends CityCitizenComplaintRepositoryWithBagRelationships, JpaRepository<CityCitizenComplaint, Long> {
     @Query(
         "select cityCitizenComplaint from CityCitizenComplaint cityCitizenComplaint where cityCitizenComplaint.user.login = ?#{principal.username}"
     )
     List<CityCitizenComplaint> findByUserIsCurrentUser();
 
     default Optional<CityCitizenComplaint> findOneWithEagerRelationships(Long id) {
-        return this.findOneWithToOneRelationships(id);
+        return this.fetchBagRelationships(this.findOneWithToOneRelationships(id));
     }
 
     default List<CityCitizenComplaint> findAllWithEagerRelationships() {
-        return this.findAllWithToOneRelationships();
+        return this.fetchBagRelationships(this.findAllWithToOneRelationships());
     }
 
     default Page<CityCitizenComplaint> findAllWithEagerRelationships(Pageable pageable) {
-        return this.findAllWithToOneRelationships(pageable);
+        return this.fetchBagRelationships(this.findAllWithToOneRelationships(pageable));
     }
 
     @Query(

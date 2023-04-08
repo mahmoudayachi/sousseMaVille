@@ -29,7 +29,8 @@
       "email": "Email",
       "phonenumber": "Phonenumber",
       "complaintCategory": "Complaint Category",
-      "user": "User"
+      "user": "User",
+      "cityCitizenPhoto": "City Citizen Photo"
     }
   }
 }

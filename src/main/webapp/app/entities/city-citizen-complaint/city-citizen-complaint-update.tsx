@@ -12,6 +12,8 @@ import { IComplaintCategory } from 'app/shared/model/complaint-category.model';
 import { getEntities as getComplaintCategories } from 'app/entities/complaint-category/complaint-category.reducer';
 import { IUser } from 'app/shared/model/user.model';
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
+import { ICityCitizenPhoto } from 'app/shared/model/city-citizen-photo.model';
+import { getEntities as getCityCitizenPhotos } from 'app/entities/city-citizen-photo/city-citizen-photo.reducer';
 import { ICityCitizenComplaint } from 'app/shared/model/city-citizen-complaint.model';
 import { Complaintstate } from 'app/shared/model/enumerations/complaintstate.model';
 import { getEntity, updateEntity, createEntity, reset } from './city-citizen-complaint.reducer';
@@ -26,6 +28,7 @@ export const CityCitizenComplaintUpdate = () => {
 
   const complaintCategories = useAppSelector(state => state.complaintCategory.entities);
   const users = useAppSelector(state => state.userManagement.users);
+  const cityCitizenPhotos = useAppSelector(state => state.cityCitizenPhoto.entities);
   const cityCitizenComplaintEntity = useAppSelector(state => state.cityCitizenComplaint.entity);
   const loading = useAppSelector(state => state.cityCitizenComplaint.loading);
   const updating = useAppSelector(state => state.cityCitizenComplaint.updating);
@@ -45,6 +48,7 @@ export const CityCitizenComplaintUpdate = () => {
 
     dispatch(getComplaintCategories({}));
     dispatch(getUsers({}));
+    dispatch(getCityCitizenPhotos({}));
   }, []);
 
   useEffect(() => {
@@ -57,6 +61,7 @@ export const CityCitizenComplaintUpdate = () => {
     const entity = {
       ...cityCitizenComplaintEntity,
       ...values,
+      cityCitizenPhotos: mapIdList(values.cityCitizenPhotos),
       complaintCategory: complaintCategories.find(it => it.id.toString() === values.complaintCategory.toString()),
       user: users.find(it => it.id.toString() === values.user.toString()),
     };
@@ -76,6 +81,7 @@ export const CityCitizenComplaintUpdate = () => {
           ...cityCitizenComplaintEntity,
           complaintCategory: cityCitizenComplaintEntity?.complaintCategory?.id,
           user: cityCitizenComplaintEntity?.user?.id,
+          cityCitizenPhotos: cityCitizenComplaintEntity?.cityCitizenPhotos?.map(e => e.id.toString()),
         };
 
   return (
@@ -224,6 +230,23 @@ export const CityCitizenComplaintUpdate = () => {
               <FormText>
                 <Translate contentKey="entity.validation.required">This field is required.</Translate>
               </FormText>
+              <ValidatedField
+                label={translate('sousseMaVilleApp.cityCitizenComplaint.cityCitizenPhoto')}
+                id="city-citizen-complaint-cityCitizenPhoto"
+                data-cy="cityCitizenPhoto"
+                type="select"
+                multiple
+                name="cityCitizenPhotos"
+              >
+                <option value="" key="0" />
+                {cityCitizenPhotos
+                  ? cityCitizenPhotos.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/city-citizen-complaint" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

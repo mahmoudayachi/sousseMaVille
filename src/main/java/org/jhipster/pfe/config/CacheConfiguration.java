@@ -56,6 +56,7 @@ public class CacheConfiguration {
             createCache(cm, org.jhipster.pfe.domain.ComplaintCategory.class.getName());
             createCache(cm, org.jhipster.pfe.domain.CityCitizenComplaint.class.getName());
             createCache(cm, org.jhipster.pfe.domain.CityCitizenPhoto.class.getName());
+            createCache(cm, org.jhipster.pfe.domain.CityCitizenComplaint.class.getName() + ".cityCitizenPhotos");
             // jhipster-needle-ehcache-add-entry
         };
     }
