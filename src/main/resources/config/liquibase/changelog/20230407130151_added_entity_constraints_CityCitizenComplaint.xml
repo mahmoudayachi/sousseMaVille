@@ -19,5 +19,17 @@
                                  constraintName="fk_city_citizen_complaint__user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="city_citizen_complaint_id"
+                                 baseTableName="rel_city_citizen_complaint__city_citizen_photo"
+                                 constraintName="fk_rel_city_citizen_complaint____city_citizen_complaint_f4_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="city_citizen_complaint"/>
+
+        <addForeignKeyConstraint baseColumnNames="city_citizen_photo_id"
+                                 baseTableName="rel_city_citizen_complaint__city_citizen_photo"
+                                 constraintName="fk_rel_city_citizen_complaint____city_citizen_photo_98_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="city_citizen_photo"/>
     </changeSet>
 </databaseChangeLog>

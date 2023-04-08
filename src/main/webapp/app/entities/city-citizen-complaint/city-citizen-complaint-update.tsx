@@ -191,6 +191,26 @@ export const CityCitizenComplaintUpdate = () => {
                 type="text"
               />
               <ValidatedField
+                label={translate('sousseMaVilleApp.cityCitizenComplaint.googlemapsx')}
+                id="city-citizen-complaint-googlemapsx"
+                name="googlemapsx"
+                data-cy="googlemapsx"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                }}
+              />
+              <ValidatedField
+                label={translate('sousseMaVilleApp.cityCitizenComplaint.googlemapy')}
+                id="city-citizen-complaint-googlemapy"
+                name="googlemapy"
+                data-cy="googlemapy"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                }}
+              />
+              <ValidatedField
                 id="city-citizen-complaint-complaintCategory"
                 name="complaintCategory"
                 data-cy="complaintCategory"

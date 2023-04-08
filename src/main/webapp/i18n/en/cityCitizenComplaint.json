@@ -28,6 +28,8 @@
       "lastname": "Lastname",
       "email": "Email",
       "phonenumber": "Phonenumber",
+      "googlemapsx": "Googlemapsx",
+      "googlemapy": "Googlemapy",
       "complaintCategory": "Complaint Category",
       "user": "User",
       "cityCitizenPhoto": "City Citizen Photo"

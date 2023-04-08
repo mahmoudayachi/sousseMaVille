@@ -207,6 +207,14 @@ export const CityCitizenComplaint = () => {
                   <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.phonenumber">Phonenumber</Translate>{' '}
                   <FontAwesomeIcon icon="sort" />
                 </th>
+                <th className="hand" onClick={sort('googlemapsx')}>
+                  <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.googlemapsx">Googlemapsx</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('googlemapy')}>
+                  <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.googlemapy">Googlemapy</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
+                </th>
                 <th>
                   <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.complaintCategory">Complaint Category</Translate>{' '}
                   <FontAwesomeIcon icon="sort" />
@@ -240,6 +248,8 @@ export const CityCitizenComplaint = () => {
                   <td>{cityCitizenComplaint.lastname}</td>
                   <td>{cityCitizenComplaint.email}</td>
                   <td>{cityCitizenComplaint.phonenumber}</td>
+                  <td>{cityCitizenComplaint.googlemapsx}</td>
+                  <td>{cityCitizenComplaint.googlemapy}</td>
                   <td>
                     {cityCitizenComplaint.complaintCategory ? (
                       <Link to={`/complaint-category/${cityCitizenComplaint.complaintCategory.id}`}>

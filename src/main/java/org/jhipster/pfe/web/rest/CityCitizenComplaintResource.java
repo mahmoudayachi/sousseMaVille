@@ -172,6 +172,12 @@ public class CityCitizenComplaintResource {
                 if (cityCitizenComplaint.getPhonenumber() != null) {
                     existingCityCitizenComplaint.setPhonenumber(cityCitizenComplaint.getPhonenumber());
                 }
+                if (cityCitizenComplaint.getGooglemapsx() != null) {
+                    existingCityCitizenComplaint.setGooglemapsx(cityCitizenComplaint.getGooglemapsx());
+                }
+                if (cityCitizenComplaint.getGooglemapy() != null) {
+                    existingCityCitizenComplaint.setGooglemapy(cityCitizenComplaint.getGooglemapy());
+                }
 
                 return existingCityCitizenComplaint;
             })

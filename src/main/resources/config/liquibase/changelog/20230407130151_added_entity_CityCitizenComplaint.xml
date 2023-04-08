@@ -41,6 +41,12 @@
             <column name="phonenumber" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="googlemapsx" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="googlemapy" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
             <column name="complaint_category_id" type="bigint">
                 <constraints nullable="false" />
             </column>
@@ -49,6 +55,20 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
+    </changeSet>
+
+    <changeSet id="20230407130151-1-relations" author="jhipster">
+
+        <createTable tableName="rel_city_citizen_complaint__city_citizen_photo">
+            <column name="city_citizen_photo_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city_citizen_complaint_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="city_citizen_complaint_id, city_citizen_photo_id" tableName="rel_city_citizen_complaint__city_citizen_photo"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
@@ -61,9 +81,9 @@
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
     -->
-    <changeSet id="20230407130151-1-data" author="jhipster" >
+    <changeSet id="20230407130151-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/data/city_citizen_complaint.csv"
+                  file="config/liquibase/fake-data/city_citizen_complaint.csv"
                   separator=";"
                   tableName="city_citizen_complaint"
                   usePreparedStatements="true">
@@ -77,6 +97,8 @@
             <column name="lastname" type="string"/>
             <column name="email" type="string"/>
             <column name="phonenumber" type="string"/>
+            <column name="googlemapsx" type="string"/>
+            <column name="googlemapy" type="string"/>
             <column name="complaint_category_id" type="numeric"/>
             <column name="user_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

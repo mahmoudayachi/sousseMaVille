@@ -91,6 +91,18 @@ export const CityCitizenComplaintDetail = () => {
           </dt>
           <dd>{cityCitizenComplaintEntity.phonenumber}</dd>
           <dt>
+            <span id="googlemapsx">
+              <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.googlemapsx">Googlemapsx</Translate>
+            </span>
+          </dt>
+          <dd>{cityCitizenComplaintEntity.googlemapsx}</dd>
+          <dt>
+            <span id="googlemapy">
+              <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.googlemapy">Googlemapy</Translate>
+            </span>
+          </dt>
+          <dd>{cityCitizenComplaintEntity.googlemapy}</dd>
+          <dt>
             <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.complaintCategory">Complaint Category</Translate>
           </dt>
           <dd>{cityCitizenComplaintEntity.complaintCategory ? cityCitizenComplaintEntity.complaintCategory.name : ''}</dd>

@@ -80,6 +80,8 @@ class CityCitizenComplaintGatlingTest extends Simulation {
                 , "lastname":"SAMPLE_TEXT"
                 , "email":"SAMPLE_TEXT"
                 , "phonenumber":"SAMPLE_TEXT"
+                , "googlemapsx":"SAMPLE_TEXT"
+                , "googlemapy":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_cityCitizenComplaint_url"))).exitHereIfFailed

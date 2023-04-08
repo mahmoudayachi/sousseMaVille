@@ -16,6 +16,8 @@ export default class CityCitizenComplaintUpdatePage {
   lastnameInput: ElementFinder = element(by.css('input#city-citizen-complaint-lastname'));
   emailInput: ElementFinder = element(by.css('input#city-citizen-complaint-email'));
   phonenumberInput: ElementFinder = element(by.css('input#city-citizen-complaint-phonenumber'));
+  googlemapsxInput: ElementFinder = element(by.css('input#city-citizen-complaint-googlemapsx'));
+  googlemapyInput: ElementFinder = element(by.css('input#city-citizen-complaint-googlemapy'));
   complaintCategorySelect: ElementFinder = element(by.css('select#city-citizen-complaint-complaintCategory'));
   userSelect: ElementFinder = element(by.css('select#city-citizen-complaint-user'));
   cityCitizenPhotoSelect: ElementFinder = element(by.css('select#city-citizen-complaint-cityCitizenPhoto'));
@@ -92,6 +94,22 @@ export default class CityCitizenComplaintUpdatePage {
 
   async getPhonenumberInput() {
     return this.phonenumberInput.getAttribute('value');
+  }
+
+  async setGooglemapsxInput(googlemapsx) {
+    await this.googlemapsxInput.sendKeys(googlemapsx);
+  }
+
+  async getGooglemapsxInput() {
+    return this.googlemapsxInput.getAttribute('value');
+  }
+
+  async setGooglemapyInput(googlemapy) {
+    await this.googlemapyInput.sendKeys(googlemapy);
+  }
+
+  async getGooglemapyInput() {
+    return this.googlemapyInput.getAttribute('value');
   }
 
   async complaintCategorySelectLastOption() {
@@ -178,6 +196,10 @@ export default class CityCitizenComplaintUpdatePage {
     await this.setEmailInput('email');
     await waitUntilDisplayed(this.saveButton);
     await this.setPhonenumberInput('phonenumber');
+    await waitUntilDisplayed(this.saveButton);
+    await this.setGooglemapsxInput('googlemapsx');
+    await waitUntilDisplayed(this.saveButton);
+    await this.setGooglemapyInput('googlemapy');
     await this.complaintCategorySelectLastOption();
     await this.userSelectLastOption();
     // this.cityCitizenPhotoSelectLastOption();

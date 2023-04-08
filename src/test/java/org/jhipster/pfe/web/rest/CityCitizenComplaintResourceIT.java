@@ -78,6 +78,12 @@ class CityCitizenComplaintResourceIT {
     private static final String DEFAULT_PHONENUMBER = "AAAAAAAAAA";
     private static final String UPDATED_PHONENUMBER = "BBBBBBBBBB";
 
+    private static final String DEFAULT_GOOGLEMAPSX = "AAAAAAAAAA";
+    private static final String UPDATED_GOOGLEMAPSX = "BBBBBBBBBB";
+
+    private static final String DEFAULT_GOOGLEMAPY = "AAAAAAAAAA";
+    private static final String UPDATED_GOOGLEMAPY = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/city-citizen-complaints";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
     private static final String ENTITY_SEARCH_API_URL = "/api/_search/city-citizen-complaints";
@@ -118,7 +124,9 @@ class CityCitizenComplaintResourceIT {
             .firstname(DEFAULT_FIRSTNAME)
             .lastname(DEFAULT_LASTNAME)
             .email(DEFAULT_EMAIL)
-            .phonenumber(DEFAULT_PHONENUMBER);
+            .phonenumber(DEFAULT_PHONENUMBER)
+            .googlemapsx(DEFAULT_GOOGLEMAPSX)
+            .googlemapy(DEFAULT_GOOGLEMAPY);
         // Add required entity
         ComplaintCategory complaintCategory;
         if (TestUtil.findAll(em, ComplaintCategory.class).isEmpty()) {
@@ -163,7 +171,9 @@ class CityCitizenComplaintResourceIT {
             .firstname(UPDATED_FIRSTNAME)
             .lastname(UPDATED_LASTNAME)
             .email(UPDATED_EMAIL)
-            .phonenumber(UPDATED_PHONENUMBER);
+            .phonenumber(UPDATED_PHONENUMBER)
+            .googlemapsx(UPDATED_GOOGLEMAPSX)
+            .googlemapy(UPDATED_GOOGLEMAPY);
         // Add required entity
         ComplaintCategory complaintCategory;
         if (TestUtil.findAll(em, ComplaintCategory.class).isEmpty()) {
@@ -236,6 +246,8 @@ class CityCitizenComplaintResourceIT {
         assertThat(testCityCitizenComplaint.getLastname()).isEqualTo(DEFAULT_LASTNAME);
         assertThat(testCityCitizenComplaint.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testCityCitizenComplaint.getPhonenumber()).isEqualTo(DEFAULT_PHONENUMBER);
+        assertThat(testCityCitizenComplaint.getGooglemapsx()).isEqualTo(DEFAULT_GOOGLEMAPSX);
+        assertThat(testCityCitizenComplaint.getGooglemapy()).isEqualTo(DEFAULT_GOOGLEMAPY);
     }
 
     @Test
@@ -361,6 +373,54 @@ class CityCitizenComplaintResourceIT {
 
     @Test
     @Transactional
+    void checkGooglemapsxIsRequired() throws Exception {
+        int databaseSizeBeforeTest = cityCitizenComplaintRepository.findAll().size();
+        int searchDatabaseSizeBefore = IterableUtil.sizeOf(cityCitizenComplaintSearchRepository.findAll());
+        // set the field null
+        cityCitizenComplaint.setGooglemapsx(null);
+
+        // Create the CityCitizenComplaint, which fails.
+
+        restCityCitizenComplaintMockMvc
+            .perform(
+                post(ENTITY_API_URL)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(cityCitizenComplaint))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<CityCitizenComplaint> cityCitizenComplaintList = cityCitizenComplaintRepository.findAll();
+        assertThat(cityCitizenComplaintList).hasSize(databaseSizeBeforeTest);
+        int searchDatabaseSizeAfter = IterableUtil.sizeOf(cityCitizenComplaintSearchRepository.findAll());
+        assertThat(searchDatabaseSizeAfter).isEqualTo(searchDatabaseSizeBefore);
+    }
+
+    @Test
+    @Transactional
+    void checkGooglemapyIsRequired() throws Exception {
+        int databaseSizeBeforeTest = cityCitizenComplaintRepository.findAll().size();
+        int searchDatabaseSizeBefore = IterableUtil.sizeOf(cityCitizenComplaintSearchRepository.findAll());
+        // set the field null
+        cityCitizenComplaint.setGooglemapy(null);
+
+        // Create the CityCitizenComplaint, which fails.
+
+        restCityCitizenComplaintMockMvc
+            .perform(
+                post(ENTITY_API_URL)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(cityCitizenComplaint))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<CityCitizenComplaint> cityCitizenComplaintList = cityCitizenComplaintRepository.findAll();
+        assertThat(cityCitizenComplaintList).hasSize(databaseSizeBeforeTest);
+        int searchDatabaseSizeAfter = IterableUtil.sizeOf(cityCitizenComplaintSearchRepository.findAll());
+        assertThat(searchDatabaseSizeAfter).isEqualTo(searchDatabaseSizeBefore);
+    }
+
+    @Test
+    @Transactional
     void getAllCityCitizenComplaints() throws Exception {
         // Initialize the database
         cityCitizenComplaintRepository.saveAndFlush(cityCitizenComplaint);
@@ -379,7 +439,9 @@ class CityCitizenComplaintResourceIT {
             .andExpect(jsonPath("$.[*].firstname").value(hasItem(DEFAULT_FIRSTNAME)))
             .andExpect(jsonPath("$.[*].lastname").value(hasItem(DEFAULT_LASTNAME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].phonenumber").value(hasItem(DEFAULT_PHONENUMBER)));
+            .andExpect(jsonPath("$.[*].phonenumber").value(hasItem(DEFAULT_PHONENUMBER)))
+            .andExpect(jsonPath("$.[*].googlemapsx").value(hasItem(DEFAULT_GOOGLEMAPSX)))
+            .andExpect(jsonPath("$.[*].googlemapy").value(hasItem(DEFAULT_GOOGLEMAPY)));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -419,7 +481,9 @@ class CityCitizenComplaintResourceIT {
             .andExpect(jsonPath("$.firstname").value(DEFAULT_FIRSTNAME))
             .andExpect(jsonPath("$.lastname").value(DEFAULT_LASTNAME))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
-            .andExpect(jsonPath("$.phonenumber").value(DEFAULT_PHONENUMBER));
+            .andExpect(jsonPath("$.phonenumber").value(DEFAULT_PHONENUMBER))
+            .andExpect(jsonPath("$.googlemapsx").value(DEFAULT_GOOGLEMAPSX))
+            .andExpect(jsonPath("$.googlemapy").value(DEFAULT_GOOGLEMAPY));
     }
 
     @Test
@@ -452,7 +516,9 @@ class CityCitizenComplaintResourceIT {
             .firstname(UPDATED_FIRSTNAME)
             .lastname(UPDATED_LASTNAME)
             .email(UPDATED_EMAIL)
-            .phonenumber(UPDATED_PHONENUMBER);
+            .phonenumber(UPDATED_PHONENUMBER)
+            .googlemapsx(UPDATED_GOOGLEMAPSX)
+            .googlemapy(UPDATED_GOOGLEMAPY);
 
         restCityCitizenComplaintMockMvc
             .perform(
@@ -475,6 +541,8 @@ class CityCitizenComplaintResourceIT {
         assertThat(testCityCitizenComplaint.getLastname()).isEqualTo(UPDATED_LASTNAME);
         assertThat(testCityCitizenComplaint.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testCityCitizenComplaint.getPhonenumber()).isEqualTo(UPDATED_PHONENUMBER);
+        assertThat(testCityCitizenComplaint.getGooglemapsx()).isEqualTo(UPDATED_GOOGLEMAPSX);
+        assertThat(testCityCitizenComplaint.getGooglemapy()).isEqualTo(UPDATED_GOOGLEMAPY);
         await()
             .atMost(5, TimeUnit.SECONDS)
             .untilAsserted(() -> {
@@ -493,6 +561,8 @@ class CityCitizenComplaintResourceIT {
                 assertThat(testCityCitizenComplaintSearch.getLastname()).isEqualTo(UPDATED_LASTNAME);
                 assertThat(testCityCitizenComplaintSearch.getEmail()).isEqualTo(UPDATED_EMAIL);
                 assertThat(testCityCitizenComplaintSearch.getPhonenumber()).isEqualTo(UPDATED_PHONENUMBER);
+                assertThat(testCityCitizenComplaintSearch.getGooglemapsx()).isEqualTo(UPDATED_GOOGLEMAPSX);
+                assertThat(testCityCitizenComplaintSearch.getGooglemapy()).isEqualTo(UPDATED_GOOGLEMAPY);
             });
     }
 
@@ -606,6 +676,8 @@ class CityCitizenComplaintResourceIT {
         assertThat(testCityCitizenComplaint.getLastname()).isEqualTo(UPDATED_LASTNAME);
         assertThat(testCityCitizenComplaint.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testCityCitizenComplaint.getPhonenumber()).isEqualTo(UPDATED_PHONENUMBER);
+        assertThat(testCityCitizenComplaint.getGooglemapsx()).isEqualTo(DEFAULT_GOOGLEMAPSX);
+        assertThat(testCityCitizenComplaint.getGooglemapy()).isEqualTo(DEFAULT_GOOGLEMAPY);
     }
 
     @Test
@@ -629,7 +701,9 @@ class CityCitizenComplaintResourceIT {
             .firstname(UPDATED_FIRSTNAME)
             .lastname(UPDATED_LASTNAME)
             .email(UPDATED_EMAIL)
-            .phonenumber(UPDATED_PHONENUMBER);
+            .phonenumber(UPDATED_PHONENUMBER)
+            .googlemapsx(UPDATED_GOOGLEMAPSX)
+            .googlemapy(UPDATED_GOOGLEMAPY);
 
         restCityCitizenComplaintMockMvc
             .perform(
@@ -652,6 +726,8 @@ class CityCitizenComplaintResourceIT {
         assertThat(testCityCitizenComplaint.getLastname()).isEqualTo(UPDATED_LASTNAME);
         assertThat(testCityCitizenComplaint.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testCityCitizenComplaint.getPhonenumber()).isEqualTo(UPDATED_PHONENUMBER);
+        assertThat(testCityCitizenComplaint.getGooglemapsx()).isEqualTo(UPDATED_GOOGLEMAPSX);
+        assertThat(testCityCitizenComplaint.getGooglemapy()).isEqualTo(UPDATED_GOOGLEMAPY);
     }
 
     @Test
@@ -768,6 +844,8 @@ class CityCitizenComplaintResourceIT {
             .andExpect(jsonPath("$.[*].firstname").value(hasItem(DEFAULT_FIRSTNAME)))
             .andExpect(jsonPath("$.[*].lastname").value(hasItem(DEFAULT_LASTNAME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].phonenumber").value(hasItem(DEFAULT_PHONENUMBER)));
+            .andExpect(jsonPath("$.[*].phonenumber").value(hasItem(DEFAULT_PHONENUMBER)))
+            .andExpect(jsonPath("$.[*].googlemapsx").value(hasItem(DEFAULT_GOOGLEMAPSX)))
+            .andExpect(jsonPath("$.[*].googlemapy").value(hasItem(DEFAULT_GOOGLEMAPY)));
     }
 }

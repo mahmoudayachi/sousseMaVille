@@ -60,6 +60,14 @@ public class CityCitizenComplaint implements Serializable {
     @Column(name = "phonenumber")
     private String phonenumber;
 
+    @NotNull
+    @Column(name = "googlemapsx", nullable = false)
+    private String googlemapsx;
+
+    @NotNull
+    @Column(name = "googlemapy", nullable = false)
+    private String googlemapy;
+
     @ManyToOne(optional = false)
     @NotNull
     private ComplaintCategory complaintCategory;
@@ -210,6 +218,32 @@ public class CityCitizenComplaint implements Serializable {
         this.phonenumber = phonenumber;
     }
 
+    public String getGooglemapsx() {
+        return this.googlemapsx;
+    }
+
+    public CityCitizenComplaint googlemapsx(String googlemapsx) {
+        this.setGooglemapsx(googlemapsx);
+        return this;
+    }
+
+    public void setGooglemapsx(String googlemapsx) {
+        this.googlemapsx = googlemapsx;
+    }
+
+    public String getGooglemapy() {
+        return this.googlemapy;
+    }
+
+    public CityCitizenComplaint googlemapy(String googlemapy) {
+        this.setGooglemapy(googlemapy);
+        return this;
+    }
+
+    public void setGooglemapy(String googlemapy) {
+        this.googlemapy = googlemapy;
+    }
+
     public ComplaintCategory getComplaintCategory() {
         return this.complaintCategory;
     }
@@ -292,6 +326,8 @@ public class CityCitizenComplaint implements Serializable {
             ", lastname='" + getLastname() + "'" +
             ", email='" + getEmail() + "'" +
             ", phonenumber='" + getPhonenumber() + "'" +
+            ", googlemapsx='" + getGooglemapsx() + "'" +
+            ", googlemapy='" + getGooglemapy() + "'" +
             "}";
     }
 }
