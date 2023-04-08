@@ -1,11 +1,14 @@
 .réclamation-cards {
-  margin-top: 40px;
+  margin-top: 10px;
   height: 200px;
   width: 300px;
   background-color: rgba(217, 217, 217, 40%);
   text-align: center;
   transition: 1s ease;
   cursor: pointer;
+}
+.réclamation-cards:hover {
+  transform: scale(1.2);
 }
 
 .icon {

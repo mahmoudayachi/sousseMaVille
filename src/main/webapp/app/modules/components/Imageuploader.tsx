@@ -27,7 +27,7 @@ const ImageUpload = () => {
     <section>
       <label className="uploadfile">
         Ajouter une photo
-        <input type="file" name="images" onChange={onSelectFile} multiple accept="image/png , image/jpeg, image/webp" className="upload" />
+        <input type="file" name="image" onChange={onSelectFile} multiple accept="image/png , image/jpeg, image/webp" className="upload" />
       </label>
       <br />
 

@@ -49,11 +49,14 @@ import { faCar } from '@fortawesome/free-solid-svg-icons/facar';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons/faLightbulb';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons/faBuilding';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons/faExclamation';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons/faTrashCan';
+import { faRecycle } from '@fortawesome/free-solid-svg-icons/faRecycle';
 export const loadIcons = () => {
   library.add(
+    faRecycle,
+    faTrashCan,
     faExclamation,
     faBuilding,
-    faTrash,
     faLightbulb,
     faCar,
     faChartLine,
