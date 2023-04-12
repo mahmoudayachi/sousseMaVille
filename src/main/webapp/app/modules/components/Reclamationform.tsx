@@ -7,8 +7,9 @@ import axios from 'axios';
 import ReclamationCategoryCard from './ReclamationCategoryCard';
 import { current } from '@reduxjs/toolkit';
 import ComplaintCategory from 'app/entities/complaint-category/complaint-category';
+import { add } from 'lodash';
 
-interface FormValues {
+interface cityCitizenComplaint {
   firstname: string;
   lastname: string;
   email: string;
@@ -19,9 +20,9 @@ interface FormValues {
   sharewithpublic: boolean;
   googlemapsx: string;
   googlemapy: string;
-  image: Blob;
+  complaintCategory: Object;
 }
-const initialFormValues: FormValues = {
+const initialFormValues: cityCitizenComplaint = {
   firstname: '',
   lastname: '',
   email: '',
@@ -31,12 +32,12 @@ const initialFormValues: FormValues = {
   address: '',
   googlemapsx: '',
   googlemapy: '',
+  complaintCategory: {},
   sharewithpublic: false,
-  image: null,
 };
 
-const Reclamationform = categorydata => {
-  const [formValues, SetFormValues] = useState<FormValues>(initialFormValues);
+const Reclamationform = ({ categorydata }: any) => {
+  const [formValues, SetFormValues] = useState<cityCitizenComplaint>(initialFormValues);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -48,6 +49,17 @@ const Reclamationform = categorydata => {
     SetFormValues({ ...formValues, [name]: checked });
   };
 
+  const [selectedValue, setSelectedValue] = useState({});
+  const handleSelectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedValue = event.target.value;
+    setSelectedValue(selectedValue);
+  };
+  const Formdata = {
+    formValues,
+    complaintCategory: {},
+  };
+
+  Formdata.complaintCategory = selectedValue;
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     axios
@@ -58,7 +70,7 @@ const Reclamationform = categorydata => {
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formValues);
+    console.log(selectedValue);
     SetFormValues(initialFormValues);
   };
 
@@ -67,14 +79,22 @@ const Reclamationform = categorydata => {
       <FormGroup>
         <FormGroup>
           <ImageUpload />
-          <FormGroup>
-            <FormGroup>
-              <Label className="labels" for="user">
-                complaintstate
-              </Label>
-              <Input type="text" className="input" name="complaintstate" onChange={handleInputChange} placeholder="complaintstate"></Input>
-            </FormGroup>
-          </FormGroup>
+        </FormGroup>
+        <FormGroup>
+          <Input type="select" value={selectedValue} name="complaintCategory" onChange={handleInputChange} className="input" required>
+            <option data-value={'samir'}>{categorydata[0].name}</option>
+            <option data-value={categorydata[1]}>{categorydata[1].name}</option>
+            <option data-value={categorydata[2]}>{categorydata[2].name}</option>
+            <option data-value={categorydata[3]}>{categorydata[3].name}</option>
+            <option data-value={categorydata[4]}>{categorydata[4].name}</option>
+            <option data-value={categorydata[5]}>{categorydata[5].name}</option>
+          </Input>
+        </FormGroup>
+        <FormGroup>
+          <Label className="labels" for="user">
+            complaintstate
+          </Label>
+          <Input type="text" className="input" name="complaintstate" onChange={handleInputChange} placeholder="complaintstate"></Input>
         </FormGroup>
         <FormGroup>
           <Label for="googlemapsx" className="labels">

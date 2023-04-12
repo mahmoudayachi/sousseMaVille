@@ -20,9 +20,9 @@ const Reclamationboard = () => {
       Setactive(false);
     }
   };
-  const [categories, setcategories] = useState([]);
+  const [categories, setcategories] = useState({});
   useEffect(() => {
-    let categorydata = [];
+    let categorydata = {};
     axios
       .get('http://localhost:8080/api/complaint-categories')
       .then(res => {
@@ -32,7 +32,7 @@ const Reclamationboard = () => {
       })
       .catch(err => {
         console.log(err);
-        categorydata = [];
+        categorydata = {};
       });
   }, []);
   return (
@@ -51,15 +51,7 @@ const Reclamationboard = () => {
           </NavItem>
         </Nav>
       </div>
-      {active == true && (
-        <section className="réclamation-cards-container">
-          <section className="inner-section">
-            {categories.map((categories, id) => (
-              <ReclamationCategoryCard categorydata={categories} key={categories.id} />
-            ))}
-          </section>
-        </section>
-      )}
+      {active == true && <Reclamationform categorydata={categories} />}
       {inactive == true && <Reclamationhistorycontainer />}
     </>
   );
