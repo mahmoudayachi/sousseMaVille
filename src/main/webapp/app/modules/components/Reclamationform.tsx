@@ -4,25 +4,13 @@ import './Reclamationform.scss';
 import { Form, FormGroup, Label, Input, FormText, Button } from 'reactstrap';
 import ImageUpload from './Imageuploader';
 import axios from 'axios';
-import ReclamationCategoryCard from './ReclamationCategoryCard';
-import { current } from '@reduxjs/toolkit';
-import ComplaintCategory from 'app/entities/complaint-category/complaint-category';
-import { add } from 'lodash';
+import { IComplaintCategory } from 'app/shared/model/complaint-category.model';
+import { ICityCitizenComplaint } from 'app/shared/model/city-citizen-complaint.model';
+import { Complaintstate } from 'app/shared/model/enumerations/complaintstate.model';
+import { ICityCitizenPhoto } from 'app/shared/model/city-citizen-photo.model';
+import { IUser } from 'app/shared/model/user.model';
 
-interface cityCitizenComplaint {
-  firstname: string;
-  lastname: string;
-  email: string;
-  phonenumber: string;
-  description: string;
-  date: string;
-  address: string;
-  sharewithpublic: boolean;
-  googlemapsx: string;
-  googlemapy: string;
-  complaintCategory: Object;
-}
-const initialFormValues: cityCitizenComplaint = {
+const initialFormValues: ICityCitizenComplaint = {
   firstname: '',
   lastname: '',
   email: '',
@@ -37,7 +25,7 @@ const initialFormValues: cityCitizenComplaint = {
 };
 
 const Reclamationform = ({ categorydata }: any) => {
-  const [formValues, SetFormValues] = useState<cityCitizenComplaint>(initialFormValues);
+  const [formValues, SetFormValues] = useState<ICityCitizenComplaint>(initialFormValues);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -49,17 +37,28 @@ const Reclamationform = ({ categorydata }: any) => {
     SetFormValues({ ...formValues, [name]: checked });
   };
 
-  const [selectedValue, setSelectedValue] = useState({});
   const handleSelectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedValue = event.target.value;
-    setSelectedValue(selectedValue);
-  };
-  const Formdata = {
-    formValues,
-    complaintCategory: {},
+    const { name, value } = event.target;
+    SetFormValues({ ...formValues, [name]: value });
   };
 
-  Formdata.complaintCategory = selectedValue;
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    SetFormValues({ ...formValues, [name]: value });
+  };
+
+  const handleChange2 = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    const category1 = categorydata.find(u => {
+      return true;
+    });
+    console.log(categorydata);
+    console.log(value);
+    console.log(category1);
+
+    SetFormValues({ ...formValues, [name]: category1 });
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     axios
@@ -70,156 +69,120 @@ const Reclamationform = ({ categorydata }: any) => {
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(selectedValue);
-    SetFormValues(initialFormValues);
+    console.log(formValues);
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormGroup>
+    <Form onSubmit={submit}>
+      <div className="border">
         <FormGroup>
-          <ImageUpload />
-        </FormGroup>
-        <FormGroup>
-          <Input type="select" value={selectedValue} name="complaintCategory" onChange={handleInputChange} className="input" required>
-            <option data-value={'samir'}>{categorydata[0].name}</option>
-            <option data-value={categorydata[1]}>{categorydata[1].name}</option>
-            <option data-value={categorydata[2]}>{categorydata[2].name}</option>
-            <option data-value={categorydata[3]}>{categorydata[3].name}</option>
-            <option data-value={categorydata[4]}>{categorydata[4].name}</option>
-            <option data-value={categorydata[5]}>{categorydata[5].name}</option>
-          </Input>
-        </FormGroup>
-        <FormGroup>
-          <Label className="labels" for="user">
-            complaintstate
-          </Label>
-          <Input type="text" className="input" name="complaintstate" onChange={handleInputChange} placeholder="complaintstate"></Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="googlemapsx" className="labels">
-            googlemapsx
-          </Label>
-          <Input type="text" name="googlemapsx" placeholder="googlemapsx" onChange={handleInputChange} className="input"></Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="googlemapy" className="labels">
-            googlemapy
-          </Label>
-          <Input type="text" name="googlemapy" onChange={handleInputChange} className="input" placeholder="googlemapy"></Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="description" className="labels">
-            description
-          </Label>
-          <Input
-            id="description"
-            name="description"
-            type="textarea"
-            value={formValues.description}
-            className="textarea"
-            aria-rowspan={300}
-            required
-            onChange={handleInputChange}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="adresse" className="labels">
-            adresse
-          </Label>
-          <Input
-            id="address"
-            name="address"
-            required
-            placeholder="address"
-            type="text"
-            value={formValues.address}
-            className="input"
-            onChange={handleInputChange}
-          />
-        </FormGroup>
+          <FormGroup>
+            <ImageUpload />
+          </FormGroup>
+          <FormGroup>
+            <Label className="biglabels" for="complaintCategory">
+              Categorie
+            </Label>
+            <Input id="exampleSelect" name="complaintCategory" type="select" className="input">
+              {categorydata.map(category => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </Input>
+          </FormGroup>
+          <FormGroup>
+            <FormGroup>
+              <Label for="adresse" className="biglabels">
+                Addresse
+              </Label>
+              <Input
+                id="address"
+                name="address"
+                required
+                placeholder="addresse"
+                type="text"
+                className="input"
+                onChange={handleInputChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="googlemapsx" className="biglabels">
+                Googlemapsx
+              </Label>
+              <Input type="text" name="googlemapsx" placeholder="googlemapsx" onChange={handleInputChange} className="input"></Input>
+            </FormGroup>
+            <FormGroup>
+              <Label for="googlemapy" className="biglabels">
+                Googlemapy
+              </Label>
+              <Input type="text" name="googlemapy" onChange={handleInputChange} className="input" placeholder="googlemapy"></Input>
+            </FormGroup>
+            <FormGroup>
+              <Label for="description" className="biglabels">
+                Description
+              </Label>
+              <Input
+                id="description"
+                name="description"
+                type="textarea"
+                className="textarea"
+                aria-rowspan={300}
+                required
+                onChange={handleInputChange}
+              />
+            </FormGroup>
 
-        <FormGroup>
-          <Label for="date" className="labels">
-            date
-          </Label>
-          <Input
-            id="date"
-            name="date"
-            value={formValues.date}
-            required
-            placeholder="date"
-            type="date"
-            className="input"
-            onChange={handleInputChange}
-          />
+            <FormGroup>
+              <Label for="date" className="labels">
+                Date
+              </Label>
+              <Input id="date" name="date" required placeholder="date" type="date" className="input" onChange={handleInputChange} />
+            </FormGroup>
+            <Label className="labels" for="complaintstate">
+              Etat
+            </Label>
+            <Input type="text" className="input" name="complaintstate" onChange={handleInputChange} placeholder="state"></Input>
+          </FormGroup>
+          <FormGroup>
+            <div className="container-checkbox">
+              <Input type="checkbox" name="sharewithpublic" onChange={handleCheckboxChange} />
+              <Label className="check-labels">afficher en public</Label>
+            </div>
+          </FormGroup>
         </FormGroup>
-        <FormGroup>
-          <div className="container-checkbox">
-            <Input type="checkbox" checked={formValues.sharewithpublic} name="sharewithpublic" onChange={handleCheckboxChange} />
-            <Label className="check-labels">afficher en public</Label>
-          </div>
-        </FormGroup>
-      </FormGroup>
+      </div>
       <div className="border">
         <FormGroup className="form">
-          <span className="span">vos coordonnées</span>
           <FormGroup>
             <Label for="firstname" className="labels">
               Nom
             </Label>
-            <Input
-              id="firstname"
-              name="firstname"
-              required
-              placeholder="Nom"
-              type="text"
-              value={formValues.firstname}
-              className="input"
-              onChange={handleInputChange}
-            />
+            <Input id="firstname" name="firstname" placeholder="Nom" type="text" className="input" onChange={handleInputChange} />
           </FormGroup>
 
           <FormGroup>
             <Label for="lastname" className="labels">
               Prénom
             </Label>
-            <Input
-              id="lastname"
-              name="lastname"
-              required
-              value={formValues.lastname}
-              placeholder="Prénom"
-              type="text"
-              className="input"
-              onChange={handleInputChange}
-            />
+            <Input id="lastname" name="lastname" placeholder="Prénom" type="text" className="input" onChange={handleInputChange} />
           </FormGroup>
 
           <FormGroup>
             <Label for="email" className="email">
               Email
             </Label>
-            <Input
-              id="email"
-              name="email"
-              value={formValues.email}
-              placeholder="email"
-              type="email"
-              className="input"
-              onChange={handleInputChange}
-            />
+            <Input id="email" name="email" placeholder="email" type="email" className="input" onChange={handleInputChange} />
           </FormGroup>
 
           <FormGroup>
             <Label for="numérotel" className="numero">
-              Numérotel
+              Numerotelephone
             </Label>
             <Input
               id="numérotel"
-              value={formValues.phonenumber}
               name="phonenumber"
-              placeholder="phonenumber"
+              placeholder="numerotelephone"
               type="number"
               className="input"
               onChange={handleInputChange}

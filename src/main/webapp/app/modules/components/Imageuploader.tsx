@@ -32,15 +32,14 @@ const ImageUpload = () => {
       <br />
 
       <div className="images">
-        {selectedImages &&
-          selectedImages.map((image, index) => {
-            return (
-              <div key={image} className="image">
-                <img src={image} height="200" alt="upload" />
-                <button onClick={() => deleteHandler(image)}>x</button>
-              </div>
-            );
-          })}
+        {selectedImages.map((image, index) => {
+          return (
+            <div key={image} className="image">
+              <img src={image} height="200" alt="upload" />
+              <button onClick={() => deleteHandler(image)}>x</button>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

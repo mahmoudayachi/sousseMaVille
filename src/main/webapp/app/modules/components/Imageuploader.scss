@@ -10,7 +10,7 @@ section {
   justify-content: center;
   align-items: center;
   border: 1px dotted black;
-  width: 300px;
+  width: 78%;
   height: 40px;
   color: white;
   cursor: pointer;
@@ -87,8 +87,14 @@ img {
 .error span {
   color: red;
 }
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
   .uploadfile {
     width: 250px;
+  }
+  img {
+    padding: 0;
+    margin: 0;
+    width: 70px;
+    height: 70px;
   }
 }

@@ -3,11 +3,19 @@
   text-align: center;
   margin-top: 40px;
 }
+* {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 .labels {
   display: block;
   margin-top: 20px;
   margin-right: 650px;
   text-align: center;
+}
+.border {
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
 }
 .files {
   margin-right: 170px;
@@ -33,6 +41,12 @@
 .container-checkbox {
   text-align: center;
 }
+.biglabels {
+  display: block;
+  margin-top: 20px;
+  margin-right: 600px;
+  text-align: center;
+}
 
 .button {
   background-color: rgba(0, 46, 136, 78%);
@@ -50,10 +64,10 @@
   color: white;
 }
 .numero {
-  margin-right: 620px;
+  margin-right: 560px;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 1024px) {
   .input {
     width: 250px;
   }
@@ -69,7 +83,7 @@
     margin-right: 210px;
   }
   .numero {
-    margin-right: 175px;
+    margin-right: 115px;
   }
   .span {
     margin-right: 130px;
@@ -77,6 +91,12 @@
   .button {
     width: 100px;
   }
-  .checkbox {
+  .biglabels {
+    margin-right: 150px;
+  }
+  .border {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
   }
 } ;

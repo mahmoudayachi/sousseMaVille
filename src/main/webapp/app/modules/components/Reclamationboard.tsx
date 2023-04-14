@@ -5,7 +5,6 @@ import ReclamationCategoryCard from './ReclamationCategoryCard';
 import { useState } from 'react';
 import axios from 'axios';
 import Reclamationform from './Reclamationform';
-import ImageUpload from './Imageuploader';
 import Reclamationhistorycontainer from './Reclamationhistorycontainer';
 
 const Reclamationboard = () => {

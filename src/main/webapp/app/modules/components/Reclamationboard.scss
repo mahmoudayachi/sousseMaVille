@@ -29,16 +29,18 @@
   margin-top: 40px;
 }
 .nav {
-  width: 400px;
+  width: 60%;
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
   margin: auto;
 }
 
 .nav-pills {
-  border: 2px solid rgba(0, 46, 136, 78%);
+  border: 1px solid;
   border-radius: 9px;
 }
-
+.nav nav nav-pills nav-fill {
+  width: 60%;
+}
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
@@ -58,5 +60,8 @@
   }
   .inner-section {
     width: 80%;
+  }
+  .nav {
+    width: 400px;
   }
 }
