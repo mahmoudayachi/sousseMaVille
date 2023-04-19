@@ -9,9 +9,6 @@ const ReclamationCategoryCard = ({ categorydata }: any) => {
   const handleClick = () => {
     setSelected(!selected);
   };
-  if (selected) {
-    var complaintcatégory: string = `${categorydata.name}`;
-  }
 
   return (
     <div className="réclamation-cards">

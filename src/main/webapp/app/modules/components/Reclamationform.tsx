@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useRef } from 'react';
+import { useState, useEffect } from 'react';
 import './Reclamationform.scss';
 import { Form, FormGroup, Label, Input, FormText, Button } from 'reactstrap';
 import ImageUpload from './Imageuploader';
@@ -26,6 +26,21 @@ const initialFormValues: ICityCitizenComplaint = {
 
 const Reclamationform = ({ categorydata }: any) => {
   const [formValues, SetFormValues] = useState<ICityCitizenComplaint>(initialFormValues);
+  const [selected, setSelected] = useState({ id: '', name: '' });
+
+  const prevNameRef = useRef('');
+  const prevsearch = useRef({});
+
+  useEffect(() => {
+    const category = categorydata.find(u => u.id == selected.id);
+    console.log(selected);
+    console.log(category);
+    SetFormValues({ ...formValues, [selected.name]: category });
+  }, [selected]);
+
+  useEffect(() => {
+    console.log(formValues);
+  }, [formValues]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -37,26 +52,9 @@ const Reclamationform = ({ categorydata }: any) => {
     SetFormValues({ ...formValues, [name]: checked });
   };
 
-  const handleSelectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    SetFormValues({ ...formValues, [name]: value });
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = event.target;
-    SetFormValues({ ...formValues, [name]: value });
-  };
-
-  const handleChange2 = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = event.target;
-    const category1 = categorydata.find(u => {
-      return true;
-    });
-    console.log(categorydata);
-    console.log(value);
-    console.log(category1);
-
-    SetFormValues({ ...formValues, [name]: category1 });
+    setSelected({ id: value, name: name });
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -83,12 +81,14 @@ const Reclamationform = ({ categorydata }: any) => {
             <Label className="biglabels" for="complaintCategory">
               Categorie
             </Label>
-            <Input id="exampleSelect" name="complaintCategory" type="select" className="input">
-              {categorydata.map(category => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
+            <Input id="exampleSelect" name="complaintCategory" onChange={handleChange} type="select">
+              {categorydata.map(category => {
+                return (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                );
+              })}
             </Input>
           </FormGroup>
           <FormGroup>
