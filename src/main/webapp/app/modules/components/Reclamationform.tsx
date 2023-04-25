@@ -9,6 +9,7 @@ import { ICityCitizenComplaint } from 'app/shared/model/city-citizen-complaint.m
 import { Complaintstate } from 'app/shared/model/enumerations/complaintstate.model';
 import { ICityCitizenPhoto } from 'app/shared/model/city-citizen-photo.model';
 import { IUser } from 'app/shared/model/user.model';
+import { useAppSelector } from 'app/config/store';
 
 const initialFormValues: ICityCitizenComplaint = {
   firstname: '',
@@ -22,26 +23,24 @@ const initialFormValues: ICityCitizenComplaint = {
   googlemapy: '',
   complaintCategory: {},
   sharewithpublic: false,
+  user: {},
 };
 
 const Reclamationform = ({ categorydata }: any) => {
   const [formValues, SetFormValues] = useState<ICityCitizenComplaint>(initialFormValues);
   const [selected, setSelected] = useState({ id: '', name: '' });
 
-  const prevNameRef = useRef('');
-  const prevsearch = useRef({});
-
+  const account = useAppSelector(state => state.authentication.account);
   useEffect(() => {
     const category = categorydata.find(u => u.id == selected.id);
-    console.log(selected);
-    console.log(category);
     SetFormValues({ ...formValues, [selected.name]: category });
   }, [selected]);
 
-  useEffect(() => {
-    console.log(formValues);
-  }, [formValues]);
+  useEffect(() => {}, []);
 
+  const setuser = () => {
+    SetFormValues({ ...formValues, user: account });
+  };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     SetFormValues({ ...formValues, [name]: value });
@@ -55,12 +54,13 @@ const Reclamationform = ({ categorydata }: any) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setSelected({ id: value, name: name });
+    setuser();
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     axios
-      .post('http://localhost:8080/api/city-citizen-complaints', formValues)
+      .post('http://localhost:8080/api/city-citizen-complaints')
       .then(response => console.log(response))
       .catch(error => console.log(error));
   };
@@ -81,7 +81,7 @@ const Reclamationform = ({ categorydata }: any) => {
             <Label className="biglabels" for="complaintCategory">
               Categorie
             </Label>
-            <Input id="exampleSelect" name="complaintCategory" onChange={handleChange} type="select">
+            <Input id="exampleSelect" className="input" name="complaintCategory" onChange={handleChange} type="select">
               {categorydata.map(category => {
                 return (
                   <option key={category.id} value={category.id}>
