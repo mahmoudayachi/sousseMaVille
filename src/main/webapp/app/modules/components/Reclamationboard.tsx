@@ -45,7 +45,7 @@ const Reclamationboard = () => {
           </NavItem>
           <NavItem className="item">
             <NavLink className="link" active={inactive} onClick={change} href="#">
-              historique
+              voir réclamation
             </NavLink>
           </NavItem>
         </Nav>

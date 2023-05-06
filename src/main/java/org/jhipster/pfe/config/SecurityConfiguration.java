@@ -87,6 +87,7 @@ public class SecurityConfiguration {
             .antMatchers("/api/city-services").permitAll()
             .antMatchers("/api/complaint-categories").permitAll()
             .antMatchers("/api/city-citizen-complaints").permitAll()
+            .antMatchers("/api/city-citizen-photos").permitAll()
             .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()

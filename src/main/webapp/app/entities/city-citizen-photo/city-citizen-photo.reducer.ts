@@ -55,6 +55,7 @@ export const updateEntity = createAsyncThunk(
     const result = await axios.put<ICityCitizenPhoto>(`${apiUrl}/${entity.id}`, cleanEntity(entity));
     thunkAPI.dispatch(getEntities({}));
     return result;
+    console.log(result);
   },
   { serializeError: serializeAxiosError }
 );
