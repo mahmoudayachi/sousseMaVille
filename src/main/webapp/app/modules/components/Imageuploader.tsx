@@ -6,13 +6,12 @@ import { ICityCitizenComplaint } from 'app/shared/model/city-citizen-complaint.m
 import { ICityCitizenPhoto } from 'app/shared/model/city-citizen-photo.model';
 import { indexOf } from 'lodash';
 
-const complaintimage: ICityCitizenPhoto = {
-  image: '',
-};
+const complaintimage: ICityCitizenPhoto = {};
 
 const ImageUpload = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [image, setImages] = useState<ICityCitizenPhoto>(complaintimage);
+  const [imageidtab, setimageidtab] = useState([]);
   const onSelectFile = event => {
     const selectedFiles = event.target.files;
 
@@ -41,11 +40,10 @@ const ImageUpload = () => {
     event.target.value = '';
   };
 
-  let tabid = [];
   useEffect(() => {
-    tabid.push(image.id);
-    console.log(tabid);
-    post();
+    if (image.image != null) {
+      post();
+    }
   }, [image]);
 
   function deleteHandler(image) {
@@ -56,9 +54,16 @@ const ImageUpload = () => {
   function post() {
     axios
       .post('http://localhost:8080/api/city-citizen-photos', image)
-      .then(response => console.log(response))
+      .then(response => {
+        console.log(response);
+        const imageid = response.data.id;
+        setimageidtab([...imageidtab, imageid]);
+        console.log(imageidtab);
+      })
+
       .catch(error => console.log(error));
   }
+
   return (
     <section>
       <label className="uploadfile">
@@ -78,9 +83,6 @@ const ImageUpload = () => {
             </>
           );
         })}
-      </div>
-      <div>
-        <button onClick={() => post()}>send</button>
       </div>
     </section>
   );

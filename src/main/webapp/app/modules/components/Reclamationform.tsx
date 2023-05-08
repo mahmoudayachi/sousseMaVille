@@ -31,6 +31,7 @@ const Reclamationform = ({ categorydata }: any) => {
   const [selected, setSelected] = useState({ id: '', name: '' });
 
   const account = useAppSelector(state => state.authentication.account);
+
   useEffect(() => {
     const category = categorydata.find(u => u.id == selected.id);
     SetFormValues({ ...formValues, [selected.name]: category });
@@ -67,7 +68,7 @@ const Reclamationform = ({ categorydata }: any) => {
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formValues);
+    SetFormValues(initialFormValues);
   };
 
   return (
