@@ -24,20 +24,20 @@ const initialFormValues: ICityCitizenComplaint = {
   complaintCategory: {},
   sharewithpublic: false,
   user: {},
+  cityCitizenPhotos: [],
 };
 
 const Reclamationform = ({ categorydata }: any) => {
   const [formValues, SetFormValues] = useState<ICityCitizenComplaint>(initialFormValues);
   const [selected, setSelected] = useState({ id: '', name: '' });
-
+  const [array, Setarray] = useState([]);
+  let picture = [];
   const account = useAppSelector(state => state.authentication.account);
 
   useEffect(() => {
     const category = categorydata.find(u => u.id == selected.id);
     SetFormValues({ ...formValues, [selected.name]: category });
   }, [selected]);
-
-  useEffect(() => {}, []);
 
   const setuser = () => {
     SetFormValues({ ...formValues, user: account });
@@ -61,22 +61,23 @@ const Reclamationform = ({ categorydata }: any) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     axios
-      .post('http://localhost:8080/api/city-citizen-complaints')
+      .post('http://localhost:8080/api/city-citizen-complaints', formValues)
       .then(response => console.log(response))
       .catch(error => console.log(error));
   };
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log(formValues);
     SetFormValues(initialFormValues);
   };
 
   return (
-    <Form onSubmit={submit}>
+    <Form onSubmit={handleSubmit}>
       <div className="border">
         <FormGroup>
           <FormGroup>
-            <ImageUpload />
+            <ImageUpload picture={picture} />
           </FormGroup>
           <FormGroup>
             <Label className="biglabels" for="complaintCategory">

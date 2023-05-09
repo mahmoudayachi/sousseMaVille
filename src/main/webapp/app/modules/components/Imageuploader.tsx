@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ImageUploader from 'react-images-uploading';
 import './Imageuploader.scss';
 import axios from 'axios';
@@ -8,10 +8,12 @@ import { indexOf } from 'lodash';
 
 const complaintimage: ICityCitizenPhoto = {};
 
-const ImageUpload = () => {
+const ImageUpload = ({ picture }: any) => {
+  let tab = [];
   const [selectedImages, setSelectedImages] = useState([]);
   const [image, setImages] = useState<ICityCitizenPhoto>(complaintimage);
-  const [imageidtab, setimageidtab] = useState([]);
+  const [idimage, setidimage] = useState([]);
+
   const onSelectFile = event => {
     const selectedFiles = event.target.files;
 
@@ -27,8 +29,6 @@ const ImageUpload = () => {
         const type = base64data.split(';', 2);
         const typeimage = type[0].split(':')[1];
         setImages({ ...image, image: imagecontent.toString(), imageContentType: typeimage.toString() });
-
-        console.log(typeimage);
       };
     }
 
@@ -40,29 +40,27 @@ const ImageUpload = () => {
     event.target.value = '';
   };
 
-  useEffect(() => {
-    if (image.image != null) {
-      post();
-    }
-  }, [image]);
+  useEffect(() => {}, [image]);
 
   function deleteHandler(image) {
     setSelectedImages(selectedImages.filter(e => e !== image));
     URL.revokeObjectURL(image);
   }
 
-  function post() {
-    axios
-      .post('http://localhost:8080/api/city-citizen-photos', image)
-      .then(response => {
-        console.log(response);
-        const imageid = response.data.id;
-        setimageidtab([...imageidtab, imageid]);
-        console.log(imageidtab);
-      })
+  useEffect(() => {
+    if (image.image != null) {
+      axios
+        .post('http://localhost:8080/api/city-citizen-photos', image)
+        .then(response => {
+          console.log(response);
+          const imageid = response.data.id;
+          setidimage([...idimage, imageid]);
+          console.log(idimage);
+        })
 
-      .catch(error => console.log(error));
-  }
+        .catch(error => console.log(error));
+    }
+  }, [image]);
 
   return (
     <section>
