@@ -8,8 +8,7 @@ import { indexOf } from 'lodash';
 
 const complaintimage: ICityCitizenPhoto = {};
 
-const ImageUpload = ({ picture }: any) => {
-  let tab = [];
+const ImageUpload = ({ setarray }) => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [image, setImages] = useState<ICityCitizenPhoto>(complaintimage);
   const [idimage, setidimage] = useState([]);
@@ -40,7 +39,9 @@ const ImageUpload = ({ picture }: any) => {
     event.target.value = '';
   };
 
-  useEffect(() => {}, [image]);
+  useEffect(() => {
+    setarray(idimage);
+  }, [idimage]);
 
   function deleteHandler(image) {
     setSelectedImages(selectedImages.filter(e => e !== image));
@@ -53,9 +54,8 @@ const ImageUpload = ({ picture }: any) => {
         .post('http://localhost:8080/api/city-citizen-photos', image)
         .then(response => {
           console.log(response);
-          const imageid = response.data.id;
+          const imageid = response.data;
           setidimage([...idimage, imageid]);
-          console.log(idimage);
         })
 
         .catch(error => console.log(error));

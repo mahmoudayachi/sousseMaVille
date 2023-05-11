@@ -10,6 +10,7 @@ import { Complaintstate } from 'app/shared/model/enumerations/complaintstate.mod
 import { ICityCitizenPhoto } from 'app/shared/model/city-citizen-photo.model';
 import { IUser } from 'app/shared/model/user.model';
 import { useAppSelector } from 'app/config/store';
+import CityCitizenPhoto from 'app/entities/city-citizen-photo/city-citizen-photo';
 
 const initialFormValues: ICityCitizenComplaint = {
   firstname: '',
@@ -31,7 +32,7 @@ const Reclamationform = ({ categorydata }: any) => {
   const [formValues, SetFormValues] = useState<ICityCitizenComplaint>(initialFormValues);
   const [selected, setSelected] = useState({ id: '', name: '' });
   const [array, Setarray] = useState([]);
-  let picture = [];
+
   const account = useAppSelector(state => state.authentication.account);
 
   useEffect(() => {
@@ -39,9 +40,16 @@ const Reclamationform = ({ categorydata }: any) => {
     SetFormValues({ ...formValues, [selected.name]: category });
   }, [selected]);
 
+  const setcityCitizenphoto = () => {
+    for (let i = 0; i < array.length; i++) {
+      initialFormValues.cityCitizenPhotos.push(array[i]);
+    }
+  };
+
   const setuser = () => {
     SetFormValues({ ...formValues, user: account });
   };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     SetFormValues({ ...formValues, [name]: value });
@@ -56,6 +64,7 @@ const Reclamationform = ({ categorydata }: any) => {
     const { name, value } = event.target;
     setSelected({ id: value, name: name });
     setuser();
+    setcityCitizenphoto();
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -77,7 +86,7 @@ const Reclamationform = ({ categorydata }: any) => {
       <div className="border">
         <FormGroup>
           <FormGroup>
-            <ImageUpload picture={picture} />
+            <ImageUpload setarray={Setarray} />
           </FormGroup>
           <FormGroup>
             <Label className="biglabels" for="complaintCategory">

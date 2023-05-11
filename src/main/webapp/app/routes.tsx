@@ -39,7 +39,7 @@ const AppRoutes = () => {
         <Route path="/" element={<CityServiceCartecontainer />} />
         <Route path="/reclamationboard" element={<Reclamationboard />} />
         <Route path="/reclamationform" element={<Reclamationform />} />
-        <Route path="/imageupload" element={<ImageUpload />} />
+        <Route path="/imageupload" element={<ImageUpload setarray={undefined} />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="account">
