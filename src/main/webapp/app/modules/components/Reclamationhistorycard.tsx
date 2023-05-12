@@ -1,24 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Reclamationhistorycard.scss';
-
-const Reclamationhistorycard = () => {
+import axios from 'axios';
+const Reclamationhistorycard = ({ complaintdata }: any) => {
   return (
     <>
       <div className="history-carte">
         <div className="reclamation-description">
-          <div className="title">Vehicule ventouse</div>
-          <div className="state">closed</div>
+          <div className="title">{complaintdata.complaintCategory.name}</div>
+          <div className="state">{complaintdata.complaintstate}</div>
         </div>
-        <div className="adresse">5 rue slayem cheyata</div>
-        <div className="image">image</div>
-      </div>
-      <div className="history-carte">
-        <div className="reclamation-description">
-          <div className="title">Probleme d'eclairage </div>
-          <div className="state">closed</div>
-        </div>
-        <div className="adresse">5 rue slayem cheyata</div>
-        <div className="image">image</div>
+        <div className="adresse">{complaintdata.address}</div>
+
+        <div className="description">{complaintdata.description}</div>
+        <div className="image"></div>
       </div>
     </>
   );
