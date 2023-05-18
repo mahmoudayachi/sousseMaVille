@@ -11,6 +11,7 @@ import { ICityCitizenPhoto } from 'app/shared/model/city-citizen-photo.model';
 import { IUser } from 'app/shared/model/user.model';
 import { useAppSelector } from 'app/config/store';
 import CityCitizenPhoto from 'app/entities/city-citizen-photo/city-citizen-photo';
+import { identity } from 'lodash';
 
 const initialFormValues: ICityCitizenComplaint = {
   firstname: '',
@@ -26,6 +27,7 @@ const initialFormValues: ICityCitizenComplaint = {
   sharewithpublic: false,
   user: {},
   cityCitizenPhotos: [],
+  complaintstate: Complaintstate.RECEIVED,
 };
 
 const Reclamationform = ({ categorydata }: any) => {
@@ -40,10 +42,9 @@ const Reclamationform = ({ categorydata }: any) => {
     SetFormValues({ ...formValues, [selected.name]: category });
   }, [selected]);
 
-  const setcityCitizenphoto = () => {
-    for (let i = 0; i < array.length; i++) {
-      initialFormValues.cityCitizenPhotos.push(array[i]);
-    }
+  const add = () => {
+    formValues.cityCitizenPhotos = array;
+    console.log(formValues.cityCitizenPhotos);
   };
 
   const setuser = () => {
@@ -63,8 +64,8 @@ const Reclamationform = ({ categorydata }: any) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setSelected({ id: value, name: name });
+    add();
     setuser();
-    setcityCitizenphoto();
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -73,11 +74,12 @@ const Reclamationform = ({ categorydata }: any) => {
       .post('http://localhost:8080/api/city-citizen-complaints', formValues)
       .then(response => console.log(response))
       .catch(error => console.log(error));
+    SetFormValues({ ...formValues, cityCitizenPhotos: [] });
+    console.log(formValues.cityCitizenPhotos);
   };
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formValues);
     SetFormValues(initialFormValues);
   };
 
@@ -150,10 +152,6 @@ const Reclamationform = ({ categorydata }: any) => {
               </Label>
               <Input id="date" name="date" required placeholder="date" type="date" className="input" onChange={handleInputChange} />
             </FormGroup>
-            <Label className="labels" for="complaintstate">
-              Etat
-            </Label>
-            <Input type="text" className="input" name="complaintstate" onChange={handleInputChange} placeholder="state"></Input>
           </FormGroup>
           <FormGroup>
             <div className="container-checkbox">

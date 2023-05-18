@@ -4,14 +4,14 @@ import './Imageuploader.scss';
 import axios from 'axios';
 import { ICityCitizenComplaint } from 'app/shared/model/city-citizen-complaint.model';
 import { ICityCitizenPhoto } from 'app/shared/model/city-citizen-photo.model';
-import { indexOf } from 'lodash';
+import { indexOf, random } from 'lodash';
 
 const complaintimage: ICityCitizenPhoto = {};
 
 const ImageUpload = ({ setarray }) => {
   const [selectedImages, setSelectedImages] = useState([]);
-  const [image, setImages] = useState<ICityCitizenPhoto>(complaintimage);
-  const [idimage, setidimage] = useState([]);
+  const [imageobject, setImages] = useState<ICityCitizenPhoto>(complaintimage);
+  const [imagetab, setimagetab] = useState([]);
 
   const onSelectFile = event => {
     const selectedFiles = event.target.files;
@@ -27,7 +27,7 @@ const ImageUpload = ({ setarray }) => {
         const imagecontent = content[1];
         const type = base64data.split(';', 2);
         const typeimage = type[0].split(':')[1];
-        setImages({ ...image, image: imagecontent.toString(), imageContentType: typeimage.toString() });
+        setImages({ ...imageobject, image: imagecontent.toString(), imageContentType: typeimage.toString() });
       };
     }
 
@@ -40,8 +40,9 @@ const ImageUpload = ({ setarray }) => {
   };
 
   useEffect(() => {
-    setarray(idimage);
-  }, [idimage]);
+    console.log(imagetab);
+    setarray(imagetab);
+  }, [imagetab]);
 
   function deleteHandler(image) {
     setSelectedImages(selectedImages.filter(e => e !== image));
@@ -49,18 +50,18 @@ const ImageUpload = ({ setarray }) => {
   }
 
   useEffect(() => {
-    if (image.image != null) {
+    if (imageobject.image != null) {
       axios
-        .post('http://localhost:8080/api/city-citizen-photos', image)
+        .post('http://localhost:8080/api/city-citizen-photos', imageobject)
         .then(response => {
           console.log(response);
-          const imageid = response.data;
-          setidimage([...idimage, imageid]);
+          const imagedata = response.data;
+          setimagetab([...imagetab, imagedata]);
         })
 
         .catch(error => console.log(error));
     }
-  }, [image]);
+  }, [imageobject]);
 
   return (
     <section>
