@@ -8,7 +8,7 @@ const Reclamationhistorycontainer = () => {
   useEffect(() => {
     let complaintdata = [];
     axios
-      .get('http://localhost:8080/api/city-citizen-complaints')
+      .get('http://localhost:8080/api/city-citizen-complaints?eagerload=true')
       .then(res => {
         complaintdata = res.data;
         console.log(complaintdata);
