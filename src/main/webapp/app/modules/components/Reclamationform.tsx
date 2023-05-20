@@ -74,7 +74,8 @@ const Reclamationform = ({ categorydata }: any) => {
       .post('http://localhost:8080/api/city-citizen-complaints', formValues)
       .then(response => console.log(response))
       .catch(error => console.log(error));
-    console.log(formValues.cityCitizenPhotos);
+
+    alert('réclamation envoyée');
   };
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {

@@ -51,8 +51,10 @@ import { faBuilding } from '@fortawesome/free-solid-svg-icons/faBuilding';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons/faExclamation';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons/faTrashCan';
 import { faRecycle } from '@fortawesome/free-solid-svg-icons/faRecycle';
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons/faLocationDot';
 export const loadIcons = () => {
   library.add(
+    faLocationDot,
     faRecycle,
     faTrashCan,
     faExclamation,
