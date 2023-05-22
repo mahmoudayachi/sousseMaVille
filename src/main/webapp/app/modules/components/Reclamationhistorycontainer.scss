@@ -1,5 +1,9 @@
 .history-container {
-  width: 100vw;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: auto;
+  border: 1px thin rgb(233, 225, 225);
+  width: 80vw;
   height: 100vh;
   display: flex;
   flex-direction: column;

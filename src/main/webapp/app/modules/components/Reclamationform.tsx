@@ -72,10 +72,11 @@ const Reclamationform = ({ categorydata }: any) => {
     event.preventDefault();
     axios
       .post('http://localhost:8080/api/city-citizen-complaints', formValues)
-      .then(response => console.log(response))
+      .then(response => {
+        console.log(response);
+        alert('réclamation envoyée');
+      })
       .catch(error => console.log(error));
-
-    alert('réclamation envoyée');
   };
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {

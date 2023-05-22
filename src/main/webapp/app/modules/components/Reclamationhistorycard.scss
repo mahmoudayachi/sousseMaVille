@@ -3,6 +3,8 @@
   height: 220px;
   background-color: rgba(217, 217, 217, 40%);
   margin: 20px auto;
+  border: 3px solid transparent;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 .reclamation-description {
   width: 80%;
@@ -23,7 +25,13 @@
 .contenu-description {
   font-size: 1.5em;
 }
-
+.details {
+  text-decoration: none;
+}
+.details a {
+  color: black;
+  text-decoration: none;
+}
 .image {
   margin-right: 10px;
   margin-bottom: 15px;

@@ -16,6 +16,7 @@ import PageNotFound from 'app/shared/error/page-not-found';
 import { AUTHORITIES } from 'app/config/constants';
 import CityServiceCartecontainer from './modules/components/CityServiceCarteContainer';
 import Carte from './modules/components/CityServiceCarte';
+import Reclamationdetails from './modules/components/Reclamationdetails';
 import Reclamationboard from './modules/components/Reclamationboard';
 import Reclamationform from './modules/components/Reclamationform';
 import ImageUpload from './modules/components/Imageuploader';
@@ -40,6 +41,7 @@ const AppRoutes = () => {
         <Route path="/reclamationboard" element={<Reclamationboard />} />
         <Route path="/reclamationform" element={<Reclamationform />} />
         <Route path="/imageupload" element={<ImageUpload setarray={undefined} />} />
+        <Route path="/reclamationdetails" element={<Reclamationdetails />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="account">
