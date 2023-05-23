@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './Reclamationhistorycontainer.scss';
 import Reclamationhistorycard from './Reclamationhistorycard';
 import axios from 'axios';
+import { useAppSelector } from 'app/config/store';
 
 const Reclamationhistorycontainer = () => {
   const [complaintdata, setcomplaintdata] = useState([]);
+  const account = useAppSelector(state => state.authentication.account);
   useEffect(() => {
     let complaintdata = [];
     axios

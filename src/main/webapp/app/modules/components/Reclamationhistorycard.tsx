@@ -25,7 +25,7 @@ const Reclamationhistorycard = ({ complaintdata }: any) => {
     <>
       <div className="history-carte">
         <div className="reclamation-description">
-          <div className="contenu-description">{complaintdata.description}</div>
+          <div className="contenu-description">{complaintdata.complaintCategory.name}</div>
           <div className="state">{complaintdata.complaintstate}</div>
         </div>
         <div className="adresse">
@@ -37,13 +37,11 @@ const Reclamationhistorycard = ({ complaintdata }: any) => {
           </div>
         </div>
 
-        <div className="image">
+        <div className="supp-button-container">
+          <button className="button-supp" onClick={deletereclamation}>
+            <FontAwesomeIcon icon={'trash-can'}></FontAwesomeIcon>
+          </button>
           <img className="reclamation-picture" src={imageurl.toString()}></img>
-          <div className="trash-container">
-            <button onClick={deletereclamation} className="delete-button">
-              <FontAwesomeIcon icon={'trash-can'}></FontAwesomeIcon>
-            </button>
-          </div>
         </div>
       </div>
     </>

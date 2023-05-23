@@ -187,7 +187,7 @@ const Reclamationform = ({ categorydata }: any) => {
 
           <FormGroup>
             <Label for="numérotel" className="numero">
-              Numerotelephone
+              Numéro téléphone
             </Label>
             <Input
               id="numérotel"
