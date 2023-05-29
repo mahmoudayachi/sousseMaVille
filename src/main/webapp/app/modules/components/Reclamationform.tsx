@@ -21,8 +21,8 @@ const initialFormValues: ICityCitizenComplaint = {
   description: '',
   date: '',
   address: '',
-  googlemapsx: '',
-  googlemapy: '',
+  googlemapsx: 'test',
+  googlemapy: 'test',
   complaintCategory: {},
   sharewithpublic: false,
   user: {},
@@ -34,6 +34,7 @@ const Reclamationform = ({ categorydata }: any) => {
   const [formValues, SetFormValues] = useState<ICityCitizenComplaint>(initialFormValues);
   const [selected, setSelected] = useState({ id: '', name: '' });
   const [array, Setarray] = useState([]);
+  const ref = useRef(null);
 
   const account = useAppSelector(state => state.authentication.account);
 
@@ -73,10 +74,13 @@ const Reclamationform = ({ categorydata }: any) => {
     axios
       .post('http://localhost:8080/api/city-citizen-complaints', formValues)
       .then(response => {
+        SetFormValues(initialFormValues);
         console.log(response);
         alert('réclamation envoyée');
       })
+
       .catch(error => console.log(error));
+    SetFormValues(initialFormValues);
   };
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -95,7 +99,14 @@ const Reclamationform = ({ categorydata }: any) => {
             <Label className="biglabels" for="complaintCategory">
               Categorie
             </Label>
-            <Input id="exampleSelect" className="input" name="complaintCategory" onChange={handleChange} type="select">
+            <Input
+              id="exampleSelect"
+              value={formValues.complaintCategory}
+              className="input"
+              name="complaintCategory"
+              onChange={handleChange}
+              type="select"
+            >
               {categorydata.map(category => {
                 return (
                   <option key={category.id} value={category.id}>
@@ -111,6 +122,8 @@ const Reclamationform = ({ categorydata }: any) => {
                 Addresse
               </Label>
               <Input
+                value={formValues.address}
+                ref={ref}
                 id="address"
                 name="address"
                 required
@@ -121,22 +134,12 @@ const Reclamationform = ({ categorydata }: any) => {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="googlemapsx" className="biglabels">
-                Googlemapsx
-              </Label>
-              <Input type="text" name="googlemapsx" placeholder="googlemapsx" onChange={handleInputChange} className="input"></Input>
-            </FormGroup>
-            <FormGroup>
-              <Label for="googlemapy" className="biglabels">
-                Googlemapy
-              </Label>
-              <Input type="text" name="googlemapy" onChange={handleInputChange} className="input" placeholder="googlemapy"></Input>
-            </FormGroup>
-            <FormGroup>
               <Label for="description" className="biglabels">
                 Description
               </Label>
               <Input
+                value={formValues.description}
+                ref={ref}
                 id="description"
                 name="description"
                 type="textarea"
@@ -151,12 +154,22 @@ const Reclamationform = ({ categorydata }: any) => {
               <Label for="date" className="labels">
                 Date
               </Label>
-              <Input id="date" name="date" required placeholder="date" type="date" className="input" onChange={handleInputChange} />
+              <Input
+                id="date"
+                ref={ref}
+                value={formValues.date}
+                name="date"
+                required
+                placeholder="date"
+                type="date"
+                className="input"
+                onChange={handleInputChange}
+              />
             </FormGroup>
           </FormGroup>
           <FormGroup>
             <div className="container-checkbox">
-              <Input type="checkbox" name="sharewithpublic" onChange={handleCheckboxChange} />
+              <Input type="checkbox" value={formValues.sharewithpublic} name="sharewithpublic" onChange={handleCheckboxChange} />
               <Label className="check-labels">afficher en public</Label>
             </div>
           </FormGroup>
@@ -168,21 +181,48 @@ const Reclamationform = ({ categorydata }: any) => {
             <Label for="firstname" className="labels">
               Nom
             </Label>
-            <Input id="firstname" name="firstname" placeholder="Nom" type="text" className="input" onChange={handleInputChange} />
+            <Input
+              id="firstname"
+              value={formValues.firstname}
+              ref={ref}
+              name="firstname"
+              placeholder="Nom"
+              type="text"
+              className="input"
+              onChange={handleInputChange}
+            />
           </FormGroup>
 
           <FormGroup>
             <Label for="lastname" className="labels">
               Prénom
             </Label>
-            <Input id="lastname" name="lastname" placeholder="Prénom" type="text" className="input" onChange={handleInputChange} />
+            <Input
+              id="lastname"
+              ref={ref}
+              value={formValues.lastname}
+              name="lastname"
+              placeholder="Prénom"
+              type="text"
+              className="input"
+              onChange={handleInputChange}
+            />
           </FormGroup>
 
           <FormGroup>
             <Label for="email" className="email">
               Email
             </Label>
-            <Input id="email" name="email" placeholder="email" type="email" className="input" onChange={handleInputChange} />
+            <Input
+              id="email"
+              ref={ref}
+              name="email"
+              value={formValues.email}
+              placeholder="email"
+              type="email"
+              className="input"
+              onChange={handleInputChange}
+            />
           </FormGroup>
 
           <FormGroup>
@@ -190,6 +230,8 @@ const Reclamationform = ({ categorydata }: any) => {
               Numéro téléphone
             </Label>
             <Input
+              value={formValues.phonenumber}
+              ref={ref}
               id="numérotel"
               name="phonenumber"
               placeholder="numerotelephone"

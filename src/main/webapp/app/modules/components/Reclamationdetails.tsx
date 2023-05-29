@@ -21,8 +21,7 @@ const Reclamationdetails = () => {
 
   return (
     <div className="main-container">
-      <span className="type">Description:</span>
-      <span> {state.description}</span>
+      <div className="reclamation-details">Reclamation details</div>
       <div className="container-image">
         {imagetab.map((image, id) => (
           <img className="imgg" src={image.toString()} />
@@ -31,6 +30,10 @@ const Reclamationdetails = () => {
       <div className="information">
         <span className="type">Categorie:</span>
         <span className="valeur"> {state.complaintCategory.name}</span>
+        <br></br>
+        <br></br>
+        <span className="type">Description:</span>
+        <span> {state.description}</span>
         <br></br>
         <br></br>
         <span className="type">Date d'envoi:</span>

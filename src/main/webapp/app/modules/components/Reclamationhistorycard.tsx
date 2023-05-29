@@ -11,14 +11,16 @@ const Reclamationhistorycard = ({ complaintdata }: any) => {
   const imagetype = complaintdata.cityCitizenPhotos[0].imageContentType;
   const imageurl = 'data' + ':' + imagetype + ';' + 'base64,' + imagecontent;
 
-  const deletereclamation = async () => {
-    await axios
+  console.log(complaintdata);
+  const deletereclamation = () => {
+    axios
       .delete('http://localhost:8080/api/city-citizen-complaints/' + complaintdata.id)
       .then(response => {
         console.log(response);
         alert('réclamation supprimée');
       })
       .catch(error => console.log(error));
+    window.location.reload();
   };
 
   return (
