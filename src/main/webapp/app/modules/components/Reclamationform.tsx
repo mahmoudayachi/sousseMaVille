@@ -12,6 +12,7 @@ import { IUser } from 'app/shared/model/user.model';
 import { useAppSelector } from 'app/config/store';
 import CityCitizenPhoto from 'app/entities/city-citizen-photo/city-citizen-photo';
 import { identity } from 'lodash';
+import ComplaintCategory from 'app/entities/complaint-category/complaint-category';
 
 const initialFormValues: ICityCitizenComplaint = {
   firstname: '',
@@ -41,6 +42,7 @@ const Reclamationform = ({ categorydata }: any) => {
   useEffect(() => {
     const category = categorydata.find(u => u.id == selected.id);
     SetFormValues({ ...formValues, [selected.name]: category });
+    console.log(selected);
   }, [selected]);
 
   const add = () => {
@@ -100,8 +102,8 @@ const Reclamationform = ({ categorydata }: any) => {
               Categorie
             </Label>
             <Input
+              defaultValue={categorydata[0]}
               id="exampleSelect"
-              value={formValues.complaintCategory}
               className="input"
               name="complaintCategory"
               onChange={handleChange}

@@ -11,7 +11,7 @@ const Reclamationhistorycard = ({ complaintdata }: any) => {
   const imagetype = complaintdata.cityCitizenPhotos[0].imageContentType;
   const imageurl = 'data' + ':' + imagetype + ';' + 'base64,' + imagecontent;
 
-  console.log(complaintdata);
+  // console.log(complaintdata);
   const deletereclamation = () => {
     axios
       .delete('http://localhost:8080/api/city-citizen-complaints/' + complaintdata.id)
@@ -22,16 +22,17 @@ const Reclamationhistorycard = ({ complaintdata }: any) => {
       .catch(error => console.log(error));
     window.location.reload();
   };
-
+  //
   return (
     <>
       <div className="history-carte">
         <div className="reclamation-description">
-          <div className="contenu-description">{complaintdata.complaintCategory.name}</div>
-          <div className="state">{complaintdata.complaintstate}</div>
+          <div className="contenu-description"> {complaintdata.complaintCategory.name}</div>
+          <div className="state"> {complaintdata.complaintstate} </div>
         </div>
         <div className="adresse">
-          <FontAwesomeIcon icon={'location-dot'}></FontAwesomeIcon> {complaintdata.address}
+          <FontAwesomeIcon icon={'location-dot'}></FontAwesomeIcon>
+          <span className="ms-3">{complaintdata.address}</span>
           <div className="details">
             <Link to={'/Reclamationdetails'} state={complaintdata}>
               consulter
