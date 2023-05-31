@@ -107,10 +107,6 @@ export const CityCitizenComplaintDetail = () => {
           </dt>
           <dd>{cityCitizenComplaintEntity.complaintCategory ? cityCitizenComplaintEntity.complaintCategory.name : ''}</dd>
           <dt>
-            <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.user">User</Translate>
-          </dt>
-          <dd>{cityCitizenComplaintEntity.user ? cityCitizenComplaintEntity.user.login : ''}</dd>
-          <dt>
             <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.cityCitizenPhoto">City Citizen Photo</Translate>
           </dt>
           <dd>

@@ -22,7 +22,6 @@ import org.jhipster.pfe.IntegrationTest;
 import org.jhipster.pfe.domain.CityCitizenComplaint;
 import org.jhipster.pfe.domain.CityCitizenPhoto;
 import org.jhipster.pfe.domain.ComplaintCategory;
-import org.jhipster.pfe.domain.User;
 import org.jhipster.pfe.domain.enumeration.Complaintstate;
 import org.jhipster.pfe.repository.CityCitizenComplaintRepository;
 import org.jhipster.pfe.repository.search.CityCitizenComplaintSearchRepository;
@@ -138,11 +137,6 @@ class CityCitizenComplaintResourceIT {
         }
         cityCitizenComplaint.setComplaintCategory(complaintCategory);
         // Add required entity
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        cityCitizenComplaint.setUser(user);
-        // Add required entity
         CityCitizenPhoto cityCitizenPhoto;
         if (TestUtil.findAll(em, CityCitizenPhoto.class).isEmpty()) {
             cityCitizenPhoto = CityCitizenPhotoResourceIT.createEntity(em);
@@ -184,11 +178,6 @@ class CityCitizenComplaintResourceIT {
             complaintCategory = TestUtil.findAll(em, ComplaintCategory.class).get(0);
         }
         cityCitizenComplaint.setComplaintCategory(complaintCategory);
-        // Add required entity
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        cityCitizenComplaint.setUser(user);
         // Add required entity
         CityCitizenPhoto cityCitizenPhoto;
         if (TestUtil.findAll(em, CityCitizenPhoto.class).isEmpty()) {

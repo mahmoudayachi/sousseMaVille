@@ -72,10 +72,6 @@ public class CityCitizenComplaint implements Serializable {
     @NotNull
     private ComplaintCategory complaintCategory;
 
-    @ManyToOne(optional = false)
-    @NotNull
-    private User user;
-
     @ManyToMany
     @NotNull
     @JoinTable(
@@ -254,19 +250,6 @@ public class CityCitizenComplaint implements Serializable {
 
     public CityCitizenComplaint complaintCategory(ComplaintCategory complaintCategory) {
         this.setComplaintCategory(complaintCategory);
-        return this;
-    }
-
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public CityCitizenComplaint user(User user) {
-        this.setUser(user);
         return this;
     }
 

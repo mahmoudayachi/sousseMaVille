@@ -8,7 +8,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
  * A ComplaintCategory.
  */
-
 @Entity
 @Table(name = "complaint_category")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

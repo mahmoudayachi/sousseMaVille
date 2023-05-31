@@ -219,9 +219,6 @@ export const CityCitizenComplaint = () => {
                   <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.complaintCategory">Complaint Category</Translate>{' '}
                   <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
-                  <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.user">User</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
                 <th />
               </tr>
             </thead>
@@ -259,7 +256,6 @@ export const CityCitizenComplaint = () => {
                       ''
                     )}
                   </td>
-                  <td>{cityCitizenComplaint.user ? cityCitizenComplaint.user.login : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button

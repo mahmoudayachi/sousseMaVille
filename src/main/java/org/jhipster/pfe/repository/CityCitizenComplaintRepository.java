@@ -18,11 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CityCitizenComplaintRepository
     extends CityCitizenComplaintRepositoryWithBagRelationships, JpaRepository<CityCitizenComplaint, Long> {
-    @Query(
-        "select cityCitizenComplaint from CityCitizenComplaint cityCitizenComplaint where cityCitizenComplaint.user.login = ?#{principal.username}"
-    )
-    List<CityCitizenComplaint> findByUserIsCurrentUser();
-
     default Optional<CityCitizenComplaint> findOneWithEagerRelationships(Long id) {
         return this.fetchBagRelationships(this.findOneWithToOneRelationships(id));
     }
@@ -36,18 +31,18 @@ public interface CityCitizenComplaintRepository
     }
 
     @Query(
-        value = "select distinct cityCitizenComplaint from CityCitizenComplaint cityCitizenComplaint left join fetch cityCitizenComplaint.complaintCategory left join fetch cityCitizenComplaint.user",
+        value = "select distinct cityCitizenComplaint from CityCitizenComplaint cityCitizenComplaint left join fetch cityCitizenComplaint.complaintCategory",
         countQuery = "select count(distinct cityCitizenComplaint) from CityCitizenComplaint cityCitizenComplaint"
     )
     Page<CityCitizenComplaint> findAllWithToOneRelationships(Pageable pageable);
 
     @Query(
-        "select distinct cityCitizenComplaint from CityCitizenComplaint cityCitizenComplaint left join fetch cityCitizenComplaint.complaintCategory left join fetch cityCitizenComplaint.user"
+        "select distinct cityCitizenComplaint from CityCitizenComplaint cityCitizenComplaint left join fetch cityCitizenComplaint.complaintCategory"
     )
     List<CityCitizenComplaint> findAllWithToOneRelationships();
 
     @Query(
-        "select cityCitizenComplaint from CityCitizenComplaint cityCitizenComplaint left join fetch cityCitizenComplaint.complaintCategory left join fetch cityCitizenComplaint.user where cityCitizenComplaint.id =:id"
+        "select cityCitizenComplaint from CityCitizenComplaint cityCitizenComplaint left join fetch cityCitizenComplaint.complaintCategory where cityCitizenComplaint.id =:id"
     )
     Optional<CityCitizenComplaint> findOneWithToOneRelationships(@Param("id") Long id);
 }

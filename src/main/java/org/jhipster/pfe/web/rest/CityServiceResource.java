@@ -49,12 +49,10 @@ public class CityServiceResource {
     private final CityServiceRepository cityServiceRepository;
 
     private final CityServiceSearchRepository cityServiceSearchRepository;
-    private final CityServiceQueryService cityServiceQueryService;
 
     public CityServiceResource(CityServiceRepository cityServiceRepository, CityServiceSearchRepository cityServiceSearchRepository) {
         this.cityServiceRepository = cityServiceRepository;
         this.cityServiceSearchRepository = cityServiceSearchRepository;
-        this.cityServiceQueryService = new CityServiceQueryService(cityServiceRepository, cityServiceSearchRepository);
     }
 
     /**

@@ -65,15 +65,6 @@
       "relationshipValidateRules": ["required"]
     },
     {
-      "otherEntityField": "login",
-      "otherEntityName": "user",
-      "otherEntityRelationshipName": "cityCitizenComplaint",
-      "ownerSide": true,
-      "relationshipName": "user",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": ["required"]
-    },
-    {
       "otherEntityField": "id",
       "otherEntityName": "cityCitizenPhoto",
       "otherEntityRelationshipName": "cityCitizenComplaint",
