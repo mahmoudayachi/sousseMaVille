@@ -9,7 +9,7 @@ import ReclamationCategoryCard from './ReclamationCategoryCard';
 const Reclamationhistorycard = ({ complaintdata }: any) => {
   const imagecontent = complaintdata.cityCitizenPhotos[0].image;
   const imagetype = complaintdata.cityCitizenPhotos[0].imageContentType;
-  const imageurl = 'data' + ':' + imagetype + ';' + 'base64,' + imagecontent;
+ const imageurl = 'data' + ':' + imagetype + ';' + 'base64,' + imagecontent;
 
   // console.log(complaintdata);
   const deletereclamation = () => {
@@ -41,11 +41,15 @@ const Reclamationhistorycard = ({ complaintdata }: any) => {
         </div>
 
         <div className="supp-button-container">
+          
+          <img className="reclamation-picture" src={imageurl.toString()}></img>
           <button className="button-supp" onClick={deletereclamation}>
             <FontAwesomeIcon icon={'trash-can'}></FontAwesomeIcon>
           </button>
-          <img className="reclamation-picture" src={imageurl.toString()}></img>
         </div>
+        
+       
+          
       </div>
     </>
   );

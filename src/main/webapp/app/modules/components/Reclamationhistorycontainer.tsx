@@ -7,6 +7,7 @@ import { useAppSelector } from 'app/config/store';
 const Reclamationhistorycontainer = () => {
   const [complaintdata, setcomplaintdata] = useState([]);
   const account = useAppSelector(state => state.authentication.account);
+  console.log(account)
   useEffect(() => {
     let complaintdata = [];
     axios
@@ -21,12 +22,19 @@ const Reclamationhistorycontainer = () => {
         complaintdata = [];
       });
   }, []);
-
+         let array=[]
+       array=  complaintdata.filter(u=>u.user.login==account.login)
+        
+        
   return (
     <div className="history-container">
-      {complaintdata.map((complaintdata, id) => (
-        <Reclamationhistorycard complaintdata={complaintdata} key={complaintdata.id} />
+    
+      {array.map((complaintdata, id) => (
+       
+        <Reclamationhistorycard complaintdata={complaintdata} key={complaintdata.id}/>
+       
       ))}
+    
     </div>
   );
 };

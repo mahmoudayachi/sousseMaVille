@@ -171,7 +171,7 @@ const Reclamationform = ({ categorydata }: any) => {
           </FormGroup>
           <FormGroup>
             <div className="container-checkbox">
-              <Input type="checkbox" value={formValues.sharewithpublic} name="sharewithpublic" onChange={handleCheckboxChange} />
+              <Input type="checkbox"  name="sharewithpublic" onChange={handleCheckboxChange} />
               <Label className="check-labels">afficher en public</Label>
             </div>
           </FormGroup>
@@ -185,7 +185,7 @@ const Reclamationform = ({ categorydata }: any) => {
             </Label>
             <Input
               id="firstname"
-              value={formValues.firstname}
+              value={formValues.firstname=account.firstName}
               ref={ref}
               name="firstname"
               placeholder="Nom"
@@ -202,7 +202,7 @@ const Reclamationform = ({ categorydata }: any) => {
             <Input
               id="lastname"
               ref={ref}
-              value={formValues.lastname}
+              value={formValues.lastname=account.lastName}
               name="lastname"
               placeholder="Prénom"
               type="text"
@@ -219,7 +219,7 @@ const Reclamationform = ({ categorydata }: any) => {
               id="email"
               ref={ref}
               name="email"
-              value={formValues.email}
+              value={formValues.email=account.email}
               placeholder="email"
               type="email"
               className="input"
