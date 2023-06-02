@@ -48,7 +48,13 @@ const Reclamationdetails = () => {
   return (
     <>
       <div className="reclamation-details main-container">Reclamation details</div>
+
       <div className="main-container">
+        <span className="type">Categorie:</span>
+        <span className="valeur"> {state.complaintCategory.name}</span>
+        <br></br>
+        <span className="type">Date d'envoi:</span>
+        <span> {state.date}</span>
         <Carousel activeIndex={activeIndex} next={next} previous={previous}>
           <CarouselIndicators items={imagetab} activeIndex={activeIndex} onClickHandler={goToIndex} />
           {slides}
@@ -56,16 +62,8 @@ const Reclamationdetails = () => {
           <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
         </Carousel>
         <div className="information">
-          <span className="type">Categorie:</span>
-          <span className="valeur"> {state.complaintCategory.name}</span>
-          <br></br>
-          <br></br>
           <span className="type">Description:</span>
           <span> {state.description}</span>
-          <br></br>
-          <br></br>
-          <span className="type">Date d'envoi:</span>
-          <span> {state.date}</span>
           <br></br>
           <br></br>
           <span className="type">Lieu:</span>

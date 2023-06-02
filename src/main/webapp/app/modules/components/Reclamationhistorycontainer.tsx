@@ -22,9 +22,11 @@ const Reclamationhistorycontainer = () => {
       });
   }, []);
 
+  let array = [];
+  array = complaintdata.filter(u => u.user.login == account.login);
   return (
     <div className="history-container">
-      {complaintdata.map((complaintdata, id) => (
+      {array.map((complaintdata, id) => (
         <Reclamationhistorycard complaintdata={complaintdata} key={complaintdata.id} />
       ))}
     </div>
