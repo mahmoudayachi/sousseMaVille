@@ -26,7 +26,6 @@ const initialFormValues: ICityCitizenComplaint = {
   googlemapy: 'test',
   complaintCategory: {},
   sharewithpublic: false,
-  user: {},
   cityCitizenPhotos: [],
   complaintstate: Complaintstate.RECEIVED,
 };

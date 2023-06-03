@@ -20,6 +20,7 @@ export default class CityCitizenComplaintUpdatePage {
   googlemapyInput: ElementFinder = element(by.css('input#city-citizen-complaint-googlemapy'));
   complaintCategorySelect: ElementFinder = element(by.css('select#city-citizen-complaint-complaintCategory'));
   cityCitizenPhotoSelect: ElementFinder = element(by.css('select#city-citizen-complaint-cityCitizenPhoto'));
+  userSelect: ElementFinder = element(by.css('select#city-citizen-complaint-user'));
 
   getPageTitle() {
     return this.pageTitle;
@@ -143,6 +144,22 @@ export default class CityCitizenComplaintUpdatePage {
     return this.cityCitizenPhotoSelect.element(by.css('option:checked')).getText();
   }
 
+  async userSelectLastOption() {
+    await this.userSelect.all(by.tagName('option')).last().click();
+  }
+
+  async userSelectOption(option) {
+    await this.userSelect.sendKeys(option);
+  }
+
+  getUserSelect() {
+    return this.userSelect;
+  }
+
+  async getUserSelectedOption() {
+    return this.userSelect.element(by.css('option:checked')).getText();
+  }
+
   async save() {
     await this.saveButton.click();
   }
@@ -185,6 +202,7 @@ export default class CityCitizenComplaintUpdatePage {
     await this.setGooglemapyInput('googlemapy');
     await this.complaintCategorySelectLastOption();
     // this.cityCitizenPhotoSelectLastOption();
+    await this.userSelectLastOption();
     await this.save();
     await waitUntilHidden(this.saveButton);
   }

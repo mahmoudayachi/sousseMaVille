@@ -47,12 +47,13 @@ public class CityServiceResource {
     private String applicationName;
 
     private final CityServiceRepository cityServiceRepository;
-
+    private final CityServiceQueryService cityServiceQueryService;
     private final CityServiceSearchRepository cityServiceSearchRepository;
 
     public CityServiceResource(CityServiceRepository cityServiceRepository, CityServiceSearchRepository cityServiceSearchRepository) {
         this.cityServiceRepository = cityServiceRepository;
         this.cityServiceSearchRepository = cityServiceSearchRepository;
+          this.cityServiceQueryService = new CityServiceQueryService(cityServiceRepository, cityServiceSearchRepository);
     }
 
     /**

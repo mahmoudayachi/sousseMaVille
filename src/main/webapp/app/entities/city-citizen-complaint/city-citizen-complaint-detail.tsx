@@ -121,6 +121,10 @@ export const CityCitizenComplaintDetail = () => {
                 ))
               : null}
           </dd>
+          <dt>
+            <Translate contentKey="sousseMaVilleApp.cityCitizenComplaint.user">User</Translate>
+          </dt>
+          <dd>{cityCitizenComplaintEntity.user ? cityCitizenComplaintEntity.user.login : ''}</dd>
         </dl>
         <Button tag={Link} to="/city-citizen-complaint" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

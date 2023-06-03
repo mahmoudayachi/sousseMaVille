@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { IComplaintCategory } from 'app/shared/model/complaint-category.model';
 import { ICityCitizenPhoto } from 'app/shared/model/city-citizen-photo.model';
+import { IUser } from 'app/shared/model/user.model';
 import { Complaintstate } from 'app/shared/model/enumerations/complaintstate.model';
 
 export interface ICityCitizenComplaint {
@@ -18,6 +19,7 @@ export interface ICityCitizenComplaint {
   googlemapy?: string;
   complaintCategory?: IComplaintCategory;
   cityCitizenPhotos?: ICityCitizenPhoto[];
+  user?: IUser | null;
 }
 
 export const defaultValue: Readonly<ICityCitizenComplaint> = {

@@ -31,7 +31,8 @@
       "googlemapsx": "Googlemapsx",
       "googlemapy": "Googlemapy",
       "complaintCategory": "Complaint Category",
-      "cityCitizenPhoto": "City Citizen Photo"
+      "cityCitizenPhoto": "City Citizen Photo",
+      "user": "User"
     }
   }
 }

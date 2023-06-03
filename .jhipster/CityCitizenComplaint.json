@@ -72,6 +72,14 @@
       "relationshipName": "cityCitizenPhoto",
       "relationshipType": "many-to-many",
       "relationshipValidateRules": ["required"]
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "cityCitizenComplaint",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "no"

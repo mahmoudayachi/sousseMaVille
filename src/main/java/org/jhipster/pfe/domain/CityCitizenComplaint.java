@@ -82,6 +82,9 @@ public class CityCitizenComplaint implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<CityCitizenPhoto> cityCitizenPhotos = new HashSet<>();
 
+    @ManyToOne
+    private User user;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -273,6 +276,19 @@ public class CityCitizenComplaint implements Serializable {
 
     public CityCitizenComplaint removeCityCitizenPhoto(CityCitizenPhoto cityCitizenPhoto) {
         this.cityCitizenPhotos.remove(cityCitizenPhoto);
+        return this;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public CityCitizenComplaint user(User user) {
+        this.setUser(user);
         return this;
     }
 

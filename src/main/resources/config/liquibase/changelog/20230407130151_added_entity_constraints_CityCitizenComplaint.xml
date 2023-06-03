@@ -25,5 +25,11 @@
                                  constraintName="fk_rel_city_citizen_complaint____city_citizen_photo_98_id"
                                  referencedColumnNames="id"
                                  referencedTableName="city_citizen_photo"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="city_citizen_complaint"
+                                 constraintName="fk_city_citizen_complaint__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
     </changeSet>
 </databaseChangeLog>
