@@ -33,7 +33,7 @@ const initialFormValues: ICityCitizenComplaint = {
 
 const Reclamationform = ({ categorydata }: any) => {
   const [formValues, SetFormValues] = useState<ICityCitizenComplaint>(initialFormValues);
-  const [selected, setSelected] = useState({ id: '', name: '' });
+  const [selected, setSelected] = useState({ id: categorydata[0].id, name: categorydata[0].name });
   const [array, Setarray] = useState([]);
   const ref = useRef(null);
 
@@ -101,14 +101,7 @@ const Reclamationform = ({ categorydata }: any) => {
             <Label className="biglabels" for="complaintCategory">
               Categorie
             </Label>
-            <Input
-              defaultValue={categorydata[0]}
-              id="exampleSelect"
-              className="input"
-              name="complaintCategory"
-              onChange={handleChange}
-              type="select"
-            >
+            <Input id="exampleSelect" className="input" name="complaintCategory" onChange={handleChange} type="select">
               {categorydata.map(category => {
                 return (
                   <option key={category.id} value={category.id}>

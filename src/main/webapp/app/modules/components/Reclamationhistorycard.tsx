@@ -55,12 +55,12 @@ const Reclamationhistorycard = ({ complaintdata }: any) => {
           </span>
         </div>
         <div className="item6">
-          <Button className="me-4" size="sm" color="primary">
+          <Button className="consulter-button" size="sm" color="primary">
             <Link className="white-text" to={'/Reclamationdetails'} state={complaintdata}>
               Consulter
             </Link>
           </Button>
-          <Button size="sm" color="danger" onClick={deletereclamation}>
+          <Button className="supprimer-button" size="sm" color="danger" onClick={deletereclamation}>
             <FontAwesomeIcon icon={'trash-can'}></FontAwesomeIcon>
             Supprimer
           </Button>
