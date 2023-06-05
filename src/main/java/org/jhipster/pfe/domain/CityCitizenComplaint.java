@@ -72,8 +72,7 @@ public class CityCitizenComplaint implements Serializable {
     @NotNull
     private ComplaintCategory complaintCategory;
 
-    @ManyToOne(optional = false)
-    @NotNull
+    @ManyToOne(optional = true)
     private User user;
 
     @ManyToMany

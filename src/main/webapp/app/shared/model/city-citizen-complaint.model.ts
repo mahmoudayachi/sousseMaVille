@@ -18,7 +18,7 @@ export interface ICityCitizenComplaint {
   googlemapsx?: string;
   googlemapy?: string;
   complaintCategory?: IComplaintCategory;
-  user?: IUser;
+  user?: IUser | null;
   cityCitizenPhotos?: ICityCitizenPhoto[];
 }
 

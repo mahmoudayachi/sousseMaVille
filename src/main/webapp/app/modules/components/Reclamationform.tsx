@@ -26,7 +26,7 @@ const initialFormValues: ICityCitizenComplaint = {
   googlemapy: 'test',
   complaintCategory: {},
   sharewithpublic: false,
-  user: {},
+  user: null,
   cityCitizenPhotos: [],
   complaintstate: Complaintstate.RECEIVED,
 };
@@ -68,7 +68,7 @@ const Reclamationform = ({ categorydata }: any) => {
     const { name, value } = event.target;
     setSelected({ id: value, name: name });
     add();
-    setuser();
+    // setuser();
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -98,7 +98,7 @@ const Reclamationform = ({ categorydata }: any) => {
             <ImageUpload setarray={Setarray} />
           </FormGroup>
           <FormGroup>
-            <Label className="biglabels" for="complaintCategory">
+            <Label className="newstyle" for="complaintCategory">
               Categorie
             </Label>
             <Input id="exampleSelect" className="input" name="complaintCategory" onChange={handleChange} type="select">
@@ -113,8 +113,8 @@ const Reclamationform = ({ categorydata }: any) => {
           </FormGroup>
           <FormGroup>
             <FormGroup>
-              <Label for="adresse" className="biglabels">
-                Addresse
+              <Label for="adresse" className="newstyle">
+                Adresse
               </Label>
               <Input
                 value={formValues.address}
@@ -122,7 +122,7 @@ const Reclamationform = ({ categorydata }: any) => {
                 id="address"
                 name="address"
                 required
-                placeholder="addresse"
+                placeholder="adresse"
                 type="text"
                 className="input"
                 onChange={handleInputChange}
@@ -189,7 +189,7 @@ const Reclamationform = ({ categorydata }: any) => {
           </FormGroup>
 
           <FormGroup>
-            <Label for="lastname" className="labels">
+            <Label for="lastname" className="styleprénom">
               Prénom
             </Label>
             <Input
