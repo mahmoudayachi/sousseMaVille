@@ -23,7 +23,7 @@ const Reclamationhistorycontainer = () => {
   }, []);
 
   let array = [];
-  array = complaintdata.filter(u => u.user.login == account.login);
+  array = complaintdata.filter(u => u.user == null || u.user.login == account.login);
   return (
     <div className="history-container">
       {array.map((complaintdata, id) => (
